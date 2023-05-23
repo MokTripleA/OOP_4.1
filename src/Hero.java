@@ -6,6 +6,11 @@ public class Hero extends Creature {
     }
 
     @Override
+    public void render() {
+
+    }
+
+    @Override
     public void walk() {
     }
 

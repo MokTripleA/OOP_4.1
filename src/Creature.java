@@ -19,7 +19,6 @@ public class Creature {
     }
 
     public void render() {
-
     }
 
     public void walk() {
