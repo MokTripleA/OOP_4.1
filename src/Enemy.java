@@ -6,7 +6,29 @@ public class Enemy extends Creature {
     }
 
     @Override
-    public void walk() {
+    public void render() {
+        window.fill(255, 0, 0);
+        window.noStroke();
+        window.rect(xPos, yPos, 36, 36);
+    }
+
+    public void walk(float x, float y) {
+        if (xPos != x && yPos != y) {
+            if (xPos < x) {
+                xPos += speed;
+            }
+            if (xPos > x) {
+                xPos -= speed;
+            }
+            if (yPos < y) {
+                yPos += speed;
+            }
+            if (yPos > y) {
+                yPos -= speed;
+            }
+        } else if (xPos == x && yPos == y) {
+            System.out.println("Hero's attacked!");
+        }
     }
 
     @Override
