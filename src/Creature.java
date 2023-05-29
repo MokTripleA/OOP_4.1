@@ -7,15 +7,17 @@ public class Creature {
     float health;
     float mass;
     float speed;
+    boolean alive;
 
 
-    Creature(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iMass, float iSpeed) {
+    Creature(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iMass, float iSpeed, boolean iAlive) {
         window = iWindow;
         xPos = inputPositionX;
         yPos = inputPositionY;
         health = iHealth;
         mass = iMass;
         speed = iSpeed;
+        alive = iAlive;
     }
 
     public void render() {
