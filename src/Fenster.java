@@ -7,6 +7,7 @@ public class Fenster extends PApplet {
     Hero Held = new Hero(this, 430, 320, 10, 20, 1, true);
     Enemy[] Gegner = new Enemy[5];
     Level background = new Level(this, 860, 720);
+    Startingscreen start = new Startingscreen(960, 540, false, this);
 
     @Override
     public void settings() {
@@ -19,13 +20,9 @@ public class Fenster extends PApplet {
     @Override
     public void draw() {
         background(200);
-        background.generate();
+        background.generate(Held);
         stroke(0);
         strokeWeight(10);
-        line(0, 0, 860, 0);
-        line(0, 0, 0, 720);
-        line(0, 720, 860, 720);
-        line(860, 0, 860, 720);
         Held.render();
         Held.walk();
         for (int x = 0; x < Gegner.length; x++) {

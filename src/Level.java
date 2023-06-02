@@ -12,8 +12,10 @@ public class Level extends PApplet {
         height = iHeight;
     }
 
-    public void generate() {
-        window.fill(0, 200, 0);
-        window.rect(0, 0, this.width, this.height);
+    public void generate(Creature anything) {
+        if (anything.alive == true) {
+            window.fill(0, 200, 0);
+            window.rect(0, 0, this.width, this.height);
+        }
     }
 }
