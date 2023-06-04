@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PConstants;
 
 public class Enemy extends Creature {
     Enemy(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iMass, float iSpeed, boolean iAlive, int iAttack, boolean iAttacking) {
@@ -31,7 +32,6 @@ public class Enemy extends Creature {
                     yPos -= speed;
                 }
             } else if (xPos == x && yPos == y) {
-                System.out.println("Hero's attacked!");
             }
         }
     }
@@ -39,12 +39,11 @@ public class Enemy extends Creature {
     public void fight(Creature hero) {
         if (alive == true) {
             if (xPos >= hero.xPos && xPos <= hero.xPos + 36 && yPos >= hero.yPos - 18 && yPos <= hero.yPos + 18 ||
-                    yPos >= hero.yPos && yPos <= hero.yPos + 36 && xPos >= hero.xPos - 18 && xPos <= hero.xPos + 18 ||
+                    yPos >= hero.yPos - 36 && yPos <= hero.yPos + 36 && xPos >= hero.xPos - 18 && xPos <= hero.xPos + 18 ||
                     xPos <= hero.xPos + 36 && xPos >= hero.xPos - 36 && yPos >= hero.yPos - 18 && yPos <= hero.yPos + 18 ||
                     yPos <= hero.yPos + 36 && yPos >= hero.yPos - 18 && xPos >= hero.xPos - 18 && xPos <= hero.xPos + 18) {
                 hero.health = hero.health - attack;
                 alive = false;
-                System.out.println("Hit!");
             } else {
                 attacking = false;
             }

@@ -9,7 +9,7 @@ public class Creature {
     float speed;
     boolean alive;
     int attack;
-    boolean attacking = false;
+    boolean attacking;
 
 
     Creature(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iMass, float iSpeed, boolean iAlive, int iAttack, boolean iAttacking) {
