@@ -13,12 +13,12 @@ public class Level extends PApplet {
     }
 
     public void generate(Creature hero) {
-        if (hero.alive == true) {
+        if (hero.alive) {
+            window.fill(200);
+            window.rect(0, 0, window.width, window.height);
             window.fill(0, 200, 0);
             window.rect(0, 0, this.width, this.height);
-        }
-        else {
-            window.background(200);
+        } else {
         }
     }
 }
