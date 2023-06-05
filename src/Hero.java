@@ -112,7 +112,7 @@ public class Hero extends Creature {
                 } else if (window.mouseX <= xPos && window.mouseY <= yPos) { //Fight UP-LEFT
                     stamina = stamina - 1;
                     window.line(xPos, yPos, xPos - 18, yPos - 18);
-                    if (xPos - 18 >= enemy.xPos && xPos - 18 <= enemy.xPos + 36 && yPos - 18 >= yPos && yPos - 18 <= yPos + 36) {
+                    if (xPos - 18 >= enemy.xPos && xPos - 18 <= enemy.xPos + 36 && yPos - 18 >= enemy.yPos && yPos - 18 <= enemy.yPos + 36) {
                         enemy.alive = false;
                         attacking = true;
                         heroKills += 1;
