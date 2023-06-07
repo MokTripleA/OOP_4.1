@@ -9,9 +9,10 @@ public class Creature {
     boolean alive;
     int attack;
     boolean attacking;
+    int points;
 
 
-    Creature(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iSpeed, boolean iAlive, int iAttack, boolean iAttacking) {
+    Creature(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iSpeed, boolean iAlive, int iAttack, boolean iAttacking, int iPoints) {
         window = iWindow;
         xPos = inputPositionX;
         yPos = inputPositionY;
@@ -20,6 +21,7 @@ public class Creature {
         alive = iAlive;
         attack = iAttack;
         attacking = iAttacking;
+        points = iPoints;
     }
 
     public void render(Creature creature) {

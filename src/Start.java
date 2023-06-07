@@ -1,35 +1,59 @@
 import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.core.PImage;
 
 public class Start {
 
     PApplet window;
     boolean starting;
+    boolean nextWave = false;
+    boolean reset = false;
+    boolean rules = false;
 
-    Start(PApplet iWindow, boolean iStarting) {
+    Start(PApplet iWindow, boolean iStarting, boolean iNextWave, boolean iReset) {
         window = iWindow;
         starting = iStarting;
+        nextWave = iNextWave;
+        reset = iReset;
     }
 
     public void starting(Creature creature) {
-        if (starting) {
+        if (starting && !rules) {
             creature.alive = false;
             window.background(0);
             window.textSize(30);
             window.textAlign(PConstants.CENTER);
             window.fill(100);
             window.text("Blackbox Adventures", window.width / 2 + 1, 120 + 1);
-            window.text("Press SPACE to start", window.width / 2 + 1, window.height / 2 + 1);
             window.fill(255);
             window.text("Blackbox Adventures", window.width / 2, 120);
-            window.text("Press SPACE to start", window.width / 2, window.height / 2);
-            window.textAlign(PConstants.LEFT);
-            if (window.keyPressed) {
-                if (window.key == 32) {
-                    starting = false;
+            window.stroke(255);
+            window.fill(0);
+            window.rect(window.width / 2 - 100, window.height / 2 - 100, 200, 100);
+            window.rect(window.width / 2 - 100, window.height / 2 + 50, 200, 100);
+            window.fill(255);
+            window.text("START", window.width / 2, window.height / 2 - 40);
+            window.text("RULES", window.width / 2, window.height / 2 + 110);
+            if (window.mouseX >= window.width / 2 - 100 && window.mouseX <= window.width / 2 + 100 && window.mouseY >= window.height / 2 - 100 && window.mouseY <= window.height / 2) {
+                window.fill(255);
+                window.rect(window.width / 2 - 100, window.height / 2 - 100, 200, 100);
+                window.fill(0);
+                window.text("START", window.width / 2, window.height / 2 - 40);
+                if (window.mousePressed) {
                     creature.alive = true;
+                    starting = false;
+                }
+            } else if (window.mouseX >= window.width / 2 - 100 && window.mouseX <= window.width / 2 + 100 && window.mouseY >= window.height / 2 + 50 && window.mouseY <= window.height / 2 + 150) {
+                window.fill(255);
+                window.rect(window.width / 2 - 100, window.height / 2 + 50, 200, 100);
+                window.fill(0);
+                window.text("RULES", window.width / 2, window.height / 2 + 110);
+                if (window.mousePressed) {
+                    rules = true;
                 }
             }
+        } else if (rules) {
+            rules();
         }
     }
 
@@ -41,11 +65,48 @@ public class Start {
             window.textAlign(PConstants.CENTER);
             window.fill(102, 0, 0);
             window.text("GAME OVER", window.width / 2 + 1, 120 + 1);
-            window.text("Press SPACE to restart or ESCAPE to exit!", window.width / 2 + 1, window.height / 2 + 1);
+            window.text("Press ESCAPE to exit!", window.width / 2 + 1, window.height / 2 + 1);
             window.fill(255, 0, 0);
             window.text("GAME OVER", window.width / 2, 120);
-            window.text("Press SPACE to restart or ESCAPE to exit!", window.width / 2, window.height / 2);
+            window.text("Press ESCAPE to exit!", window.width / 2, window.height / 2);
             window.textAlign(PConstants.LEFT);
+        }
+    }
+
+    public void nextWave(Hero hero, Enemy enemy) {
+        if (nextWave == true) {
+            hero.alive = false;
+            enemy.alive = false;
+            window.background(0);
+            window.textSize(30);
+            window.textAlign(PConstants.CENTER);
+            window.fill(102, 0, 0);
+            window.text("WAVE COMPLETED", window.width / 2 + 1, 120 + 1);
+            window.text("Press SPACE for next WAVE!", window.width / 2 + 1, window.height / 2 + 1);
+            window.fill(255, 0, 0);
+            window.text("WAVE COMPLETED", window.width / 2, 120);
+            window.text("Press SPACE for next WAVE!", window.width / 2, window.height / 2);
+            window.textAlign(PConstants.LEFT);
+            if (window.keyPressed && nextWave == true) {
+                if (window.key == 32) {
+                    reset = true;
+                    hero.alive = true;
+                    hero.xPos = 100;
+                    hero.yPos = 320;
+                    nextWave = false;
+                    hero.wave += 1;
+                }
+            }
+        }
+    }
+
+    public void rules() {
+        PImage img;
+        img = window.loadImage("Rules.png");
+        window.image(img, 0, 0);
+
+        if (window.keyPressed && window.key == 32) {
+            rules = false;
         }
     }
 }
