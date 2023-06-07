@@ -37,17 +37,28 @@ public class Fenster extends PApplet {
                 start.nextWave = true;
                 Enemies += 2;
             }
+            if (!Gegner[0].alive && !start.starting) {
+                if (!Gegner[1].alive) {
+                    if (!Gegner[2].alive) {
+                        if (!Gegner[3].alive) {
+                            if (!Gegner[4].alive) {
+                            }
+                            start.nextWave = true;
+                        }
+
+                        // if (start.reset) {
+                        //     Gegner = null;
+                        //     Enemy[] Gegner = new Enemy[Enemies];
+                        //     for (int x = 0; x < Gegner.length; x++) {
+                        //         Gegner[x] = new Enemy(this, random(200, 824), random(0, 684), 40, 1, true, 30, false, 0);
+                        //     }
+                        //     start.reset = false;
+                        // }
+
+                        Held.points();
+                    }
+                }
+            }
         }
-
-        // if (start.reset) {
-        //     Gegner = null;
-        //     Enemy[] Gegner = new Enemy[Enemies];
-        //     for (int x = 0; x < Gegner.length; x++) {
-        //         Gegner[x] = new Enemy(this, random(200, 824), random(0, 684), 40, 1, true, 30, false, 0);
-        //     }
-        //     start.reset = false;
-        // }
-
-        Held.points();
     }
 }
