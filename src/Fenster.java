@@ -24,6 +24,7 @@ public class Fenster extends PApplet {
         start.ending(Held);
         Held.walk(0, 0);
         Held.stamina();
+
         for (int x = 0; x < Gegner.length; x++) {
             start.nextWave(Held, Gegner[x]);
             Held.render(Gegner[x]);
@@ -33,23 +34,6 @@ public class Fenster extends PApplet {
             Held.ultimate(Gegner[x]);
             Held.fight(Gegner[x]);
             Gegner[x].fight(Held);
-            if (Held.heroKills == Enemies) {
-                start.nextWave = true;
-                Enemies += 2;
-            }
-            if (!Gegner[0].alive && !start.starting) {
-                if (!Gegner[1].alive) {
-                    if (!Gegner[2].alive) {
-                        if (!Gegner[3].alive) {
-                            if (!Gegner[4].alive) {
-                                if (frameCount % 60 == 0) {
-                                    start.nextWave = true;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
             Held.points();
         }
     }

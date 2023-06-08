@@ -54,6 +54,7 @@ public class Enemy extends Creature {
                 hero.health = hero.health - attack;
                 hero.points -= 50;
                 attacking = true;
+                points += 1;
                 alive = false;
             } else {
                 attacking = false;

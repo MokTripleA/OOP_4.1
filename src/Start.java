@@ -93,6 +93,10 @@ public class Start {
             window.textAlign(PConstants.LEFT);
             window.fill(0);
             if (window.keyPressed && window.key == 32) {
+                hero.reset();
+                nextWave = false;
+                hero.gameOver = false;
+                starting = false;
             }
         }
     }

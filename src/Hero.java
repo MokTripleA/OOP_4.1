@@ -6,14 +6,13 @@ public class Hero extends Creature {
         super(iWindow, inputPositionX, inputPositionY, iHealth, iSpeed, iSize, iAlive, iAttack, iAttacking, iPoints, iRange);
     }
 
-    int heroKills = 7;
+    int heroKills = 0;
     int stamina = 10;
     int wave = 1;
     float diameter = 0;
     boolean ultimate = false;
     boolean gameOver = false;
     boolean circle = false;
-
 
     public void render(Creature enemy) {
         if (alive) {
@@ -225,5 +224,11 @@ public class Hero extends Creature {
             window.text("Wave " + wave + " / 5", 30, 30);
             window.text("Points: " + points, 30, window.height - 15);
         }
+    }
+
+    public void reset() {
+        xPos = 100;
+        yPos = 320;
+        alive = true;
     }
 }
