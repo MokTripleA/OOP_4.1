@@ -6,15 +6,12 @@ public class Enemy extends Creature {
         super(iWindow, inputPositionX, inputPositionY, iHealth, iSpeed, iSize, iAlive, iAttack, iAttacking, iPoints, iRange);
     }
 
-    boolean heroAlive = false;
-
     @Override
     public void render(Creature hero) {
         if (health <= 0) {
             alive = false;
         }
         if (alive && hero.alive) {
-            heroAlive = true;
             window.fill(255, 0, 0);
             window.noStroke();
             window.rectMode(PConstants.CORNER);
@@ -26,7 +23,7 @@ public class Enemy extends Creature {
     }
 
     public void walk(float x, float y) {
-        if (alive && heroAlive) {
+        if (alive) {
             if (xPos != x && yPos != y) {
                 if (xPos < x) {
                     xPos += speed;
@@ -46,7 +43,7 @@ public class Enemy extends Creature {
     }
 
     public void fight(Creature hero) {
-        if (alive && heroAlive) {
+        if (alive) {
             if (xPos >= hero.xPos && xPos <= hero.xPos + 36 && yPos >= hero.yPos - 18 && yPos <= hero.yPos + 18 ||
                     yPos >= hero.yPos - 36 && yPos <= hero.yPos + 36 && xPos >= hero.xPos - 18 && xPos <= hero.xPos + 18 ||
                     xPos <= hero.xPos + 36 && xPos >= hero.xPos - 36 && yPos >= hero.yPos - 18 && yPos <= hero.yPos + 18 ||
@@ -54,7 +51,6 @@ public class Enemy extends Creature {
                 hero.health = hero.health - attack;
                 hero.points -= 50;
                 attacking = true;
-                points += 1;
                 alive = false;
             } else {
                 attacking = false;

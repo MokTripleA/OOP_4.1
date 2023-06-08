@@ -8,7 +8,6 @@ public class Boss extends Enemy {
     @Override
     public void render(Creature hero) {
         if (alive && hero.alive) {
-            heroAlive = true;
             window.fill(255, 0, 0);
             window.noStroke();
             window.rect(xPos, yPos, size, size);

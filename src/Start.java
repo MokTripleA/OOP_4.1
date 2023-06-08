@@ -94,9 +94,6 @@ public class Start {
             window.fill(0);
             if (window.keyPressed && window.key == 32) {
                 hero.reset();
-                nextWave = false;
-                hero.gameOver = false;
-                starting = false;
             }
         }
     }

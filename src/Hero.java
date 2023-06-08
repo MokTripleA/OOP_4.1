@@ -44,6 +44,90 @@ public class Hero extends Creature {
         }
     }
 
+    public void fight(Creature enemy) {
+        if (alive) {
+            if (window.mousePressed) {
+                if (enemy.alive && stamina > 0) {
+                    if (window.mouseX <= xPos && window.mouseY >= yPos && window.mouseY <= yPos + 36) { //Fight LEFT
+                        stamina = stamina - 1;
+                        window.line(xPos, yPos + 18, xPos - range, yPos + 18);
+                        if (xPos - 36 <= enemy.xPos + 36 && xPos - 36 >= enemy.xPos && yPos >= enemy.yPos - 5 && yPos + 36 <= enemy.yPos + 41) {
+                            enemy.alive = false;
+                            attacking = true;
+                            heroKills += 1;
+                            points += 100;
+                        }
+                    } else if (window.mouseX <= xPos && window.mouseY <= yPos) { //Fight UP-LEFT
+                        stamina = stamina - 1;
+                        window.line(xPos, yPos, xPos - range / 2, yPos - range / 2);
+                        if (xPos - 18 >= enemy.xPos && xPos - 18 <= enemy.xPos + 36 && yPos - 18 >= enemy.yPos && yPos - 18 <= enemy.yPos + 36) {
+                            enemy.alive = false;
+                            attacking = true;
+                            heroKills += 1;
+                            points += 100;
+                        }
+                    } else if (window.mouseX >= xPos && window.mouseX <= xPos + 36 && window.mouseY <= yPos) { //Fight UP
+                        stamina = stamina - 1;
+                        window.line(xPos + 18, yPos, xPos + 18, yPos - range);
+                        if (yPos - 36 <= enemy.yPos + 36 && yPos - 36 >= enemy.yPos && xPos >= enemy.xPos - 5 && xPos + 36 <= enemy.xPos + 41) {
+                            enemy.alive = false;
+                            attacking = true;
+                            heroKills += 1;
+                            points += 100;
+                        }
+                    } else if (window.mouseX >= xPos + 36 && window.mouseY <= yPos) { //Fight UP-RIGHT
+                        stamina = stamina - 1;
+                        window.line(xPos + 36, yPos, xPos + 36 + range / 2, yPos - range / 2);
+                        if (xPos + 54 >= enemy.xPos && xPos + 54 <= enemy.xPos + 36 && yPos - 18 >= enemy.yPos && yPos - 18 <= enemy.yPos + 36) {
+                            enemy.alive = false;
+                            attacking = true;
+                            heroKills += 1;
+                            points += 100;
+                        }
+                    } else if (window.mouseX >= xPos + 36 && window.mouseY >= yPos && window.mouseY <= yPos + 36) { //Fight RIGHT
+                        stamina = stamina - 1;
+                        window.line(xPos + 36, yPos + 18, xPos + 36 + range, yPos + 18);
+                        if (xPos + 72 >= enemy.xPos && xPos + 72 <= enemy.xPos + 36 && yPos >= enemy.yPos - 5 && yPos <= enemy.yPos + 41) {
+                            enemy.alive = false;
+                            attacking = true;
+                            heroKills += 1;
+                            points += 100;
+                        }
+                    } else if (window.mouseX >= xPos + 36 && window.mouseY >= yPos + 36) { //Fight DOWN-RIGHT
+                        stamina = stamina - 1;
+                        window.line(xPos + 36, yPos + 36, xPos + 36 + range / 2, yPos + 36 + range / 2);
+                        if (xPos + 54 >= enemy.xPos && xPos + 54 <= enemy.xPos + 36 && yPos + 54 >= enemy.yPos && yPos + 54 <= enemy.yPos + 36) {
+                            enemy.alive = false;
+                            attacking = true;
+                            heroKills += 1;
+                            points += 100;
+                        }
+                    } else if (window.mouseX >= xPos && window.mouseX <= xPos + 36 && window.mouseY > yPos) { //Fight DOWN
+                        stamina = stamina - 1;
+                        window.line(xPos + 18, yPos + 36, xPos + 18, yPos + 36 + range);
+                        if (yPos + 72 >= enemy.yPos && yPos + 72 <= enemy.yPos + 36 && xPos >= enemy.xPos - 5 && xPos <= enemy.xPos + 41) {
+                            enemy.alive = false;
+                            attacking = true;
+                            heroKills += 1;
+                            points += 100;
+                        }
+                    } else if (window.mouseX <= xPos && window.mouseY >= yPos + 36) { //Fight DOWN-LEFT
+                        stamina = stamina - 1;
+                        window.line(xPos, yPos + 36, xPos - range / 2, yPos + 36 + range / 2);
+                        if (xPos - 18 <= enemy.xPos + 36 && xPos - 18 >= enemy.xPos && yPos + 54 >= enemy.yPos && yPos <= enemy.yPos + 36) {
+                            enemy.alive = false;
+                            attacking = true;
+                            heroKills += 1;
+                            points += 100;
+                        }
+                    }
+                } else {
+                    attacking = false;
+                }
+            }
+        }
+    }
+
     public void healthbar(Creature enemy) {
         if (alive) {
             if (health == 0) {
@@ -128,90 +212,6 @@ public class Hero extends Creature {
         }
         if (window.frameCount % 30 == 1) {
             stamina += 1;
-        }
-    }
-
-    public void fight(Creature enemy) {
-        if (alive) {
-            if (window.mousePressed) {
-                if (enemy.alive && stamina > 0) {
-                    if (window.mouseX <= xPos && window.mouseY >= yPos && window.mouseY <= yPos + 36) { //Fight LEFT
-                        stamina = stamina - 1;
-                        window.line(xPos, yPos + 18, xPos - range, yPos + 18);
-                        if (xPos - 36 <= enemy.xPos + 36 && xPos - 36 >= enemy.xPos && yPos >= enemy.yPos - 5 && yPos + 36 <= enemy.yPos + 41) {
-                            enemy.alive = false;
-                            attacking = true;
-                            heroKills += 1;
-                            points += 100;
-                        }
-                    } else if (window.mouseX <= xPos && window.mouseY <= yPos) { //Fight UP-LEFT
-                        stamina = stamina - 1;
-                        window.line(xPos, yPos, xPos - range / 2, yPos - range / 2);
-                        if (xPos - 18 >= enemy.xPos && xPos - 18 <= enemy.xPos + 36 && yPos - 18 >= enemy.yPos && yPos - 18 <= enemy.yPos + 36) {
-                            enemy.alive = false;
-                            attacking = true;
-                            heroKills += 1;
-                            points += 100;
-                        }
-                    } else if (window.mouseX >= xPos && window.mouseX <= xPos + 36 && window.mouseY <= yPos) { //Fight UP
-                        stamina = stamina - 1;
-                        window.line(xPos + 18, yPos, xPos + 18, yPos - range);
-                        if (yPos - 36 <= enemy.yPos + 36 && yPos - 36 >= enemy.yPos && xPos >= enemy.xPos - 5 && xPos + 36 <= enemy.xPos + 41) {
-                            enemy.alive = false;
-                            attacking = true;
-                            heroKills += 1;
-                            points += 100;
-                        }
-                    } else if (window.mouseX >= xPos + 36 && window.mouseY <= yPos) { //Fight UP-RIGHT
-                        stamina = stamina - 1;
-                        window.line(xPos + 36, yPos, xPos + 36 + range / 2, yPos - range / 2);
-                        if (xPos + 54 >= enemy.xPos && xPos + 54 <= enemy.xPos + 36 && yPos - 18 >= enemy.yPos && yPos - 18 <= enemy.yPos + 36) {
-                            enemy.alive = false;
-                            attacking = true;
-                            heroKills += 1;
-                            points += 100;
-                        }
-                    } else if (window.mouseX >= xPos + 36 && window.mouseY >= yPos && window.mouseY <= yPos + 36) { //Fight RIGHT
-                        stamina = stamina - 1;
-                        window.line(xPos + 36, yPos + 18, xPos + 36 + range, yPos + 18);
-                        if (xPos + 72 >= enemy.xPos && xPos + 72 <= enemy.xPos + 36 && yPos >= enemy.yPos - 5 && yPos <= enemy.yPos + 41) {
-                            enemy.alive = false;
-                            attacking = true;
-                            heroKills += 1;
-                            points += 100;
-                        }
-                    } else if (window.mouseX >= xPos + 36 && window.mouseY >= yPos + 36) { //Fight DOWN-RIGHT
-                        stamina = stamina - 1;
-                        window.line(xPos + 36, yPos + 36, xPos + 36 + range / 2, yPos + 36 + range / 2);
-                        if (xPos + 54 >= enemy.xPos && xPos + 54 <= enemy.xPos + 36 && yPos + 54 >= enemy.yPos && yPos + 54 <= enemy.yPos + 36) {
-                            enemy.alive = false;
-                            attacking = true;
-                            heroKills += 1;
-                            points += 100;
-                        }
-                    } else if (window.mouseX >= xPos && window.mouseX <= xPos + 36 && window.mouseY > yPos) { //Fight DOWN
-                        stamina = stamina - 1;
-                        window.line(xPos + 18, yPos + 36, xPos + 18, yPos + 36 + range);
-                        if (yPos + 72 >= enemy.yPos && yPos + 72 <= enemy.yPos + 36 && xPos >= enemy.xPos - 5 && xPos <= enemy.xPos + 41) {
-                            enemy.alive = false;
-                            attacking = true;
-                            heroKills += 1;
-                            points += 100;
-                        }
-                    } else if (window.mouseX <= xPos && window.mouseY >= yPos + 36) { //Fight DOWN-LEFT
-                        stamina = stamina - 1;
-                        window.line(xPos, yPos + 36, xPos - range / 2, yPos + 36 + range / 2);
-                        if (xPos - 18 <= enemy.xPos + 36 && xPos - 18 >= enemy.xPos && yPos + 54 >= enemy.yPos && yPos <= enemy.yPos + 36) {
-                            enemy.alive = false;
-                            attacking = true;
-                            heroKills += 1;
-                            points += 100;
-                        }
-                    }
-                } else {
-                    attacking = false;
-                }
-            }
         }
     }
 

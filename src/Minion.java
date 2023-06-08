@@ -1,6 +1,6 @@
 import processing.core.PApplet;
 
-public class Minion extends Enemy{
+public class Minion extends Enemy {
     Minion(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iSpeed, float iSize, boolean iAlive, int iAttack, boolean iAttacking, int iPoints, int iRange) {
         super(iWindow, inputPositionX, inputPositionY, iHealth, iSpeed, iSize, iAlive, iAttack, iAttacking, iPoints, iRange);
     }
@@ -8,7 +8,6 @@ public class Minion extends Enemy{
     @Override
     public void render(Creature hero) {
         if (alive && hero.alive) {
-            heroAlive = true;
             window.fill(255, 0, 0);
             window.noStroke();
             window.rect(xPos, yPos, size, size);
