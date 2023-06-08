@@ -2,8 +2,8 @@ import processing.core.PApplet;
 import processing.core.PConstants;
 
 public class Hero extends Creature {
-    Hero(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iSpeed, boolean iAlive, int iAttack, boolean iAttacking, int iPoints) {
-        super(iWindow, inputPositionX, inputPositionY, iHealth, iSpeed, iAlive, iAttack, iAttacking, iPoints);
+    Hero(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iSpeed, float iSize, boolean iAlive, int iAttack, boolean iAttacking, int iPoints, int iRange) {
+        super(iWindow, inputPositionX, inputPositionY, iHealth, iSpeed, iSize, iAlive, iAttack, iAttacking, iPoints, iRange);
     }
 
     int heroKills = 7;
@@ -138,7 +138,7 @@ public class Hero extends Creature {
                 if (enemy.alive && stamina > 0) {
                     if (window.mouseX <= xPos && window.mouseY >= yPos && window.mouseY <= yPos + 36) { //Fight LEFT
                         stamina = stamina - 1;
-                        window.line(xPos, yPos + 18, xPos - 36, yPos + 18);
+                        window.line(xPos, yPos + 18, xPos - range, yPos + 18);
                         if (xPos - 36 <= enemy.xPos + 36 && xPos - 36 >= enemy.xPos && yPos >= enemy.yPos - 5 && yPos + 36 <= enemy.yPos + 41) {
                             enemy.alive = false;
                             attacking = true;
@@ -147,7 +147,7 @@ public class Hero extends Creature {
                         }
                     } else if (window.mouseX <= xPos && window.mouseY <= yPos) { //Fight UP-LEFT
                         stamina = stamina - 1;
-                        window.line(xPos, yPos, xPos - 18, yPos - 18);
+                        window.line(xPos, yPos, xPos - range / 2, yPos - range / 2);
                         if (xPos - 18 >= enemy.xPos && xPos - 18 <= enemy.xPos + 36 && yPos - 18 >= enemy.yPos && yPos - 18 <= enemy.yPos + 36) {
                             enemy.alive = false;
                             attacking = true;
@@ -156,7 +156,7 @@ public class Hero extends Creature {
                         }
                     } else if (window.mouseX >= xPos && window.mouseX <= xPos + 36 && window.mouseY <= yPos) { //Fight UP
                         stamina = stamina - 1;
-                        window.line(xPos + 18, yPos, xPos + 18, yPos - 36);
+                        window.line(xPos + 18, yPos, xPos + 18, yPos - range);
                         if (yPos - 36 <= enemy.yPos + 36 && yPos - 36 >= enemy.yPos && xPos >= enemy.xPos - 5 && xPos + 36 <= enemy.xPos + 41) {
                             enemy.alive = false;
                             attacking = true;
@@ -165,7 +165,7 @@ public class Hero extends Creature {
                         }
                     } else if (window.mouseX >= xPos + 36 && window.mouseY <= yPos) { //Fight UP-RIGHT
                         stamina = stamina - 1;
-                        window.line(xPos + 36, yPos, xPos + 54, yPos - 18);
+                        window.line(xPos + 36, yPos, xPos + 36 + range / 2, yPos - range / 2);
                         if (xPos + 54 >= enemy.xPos && xPos + 54 <= enemy.xPos + 36 && yPos - 18 >= enemy.yPos && yPos - 18 <= enemy.yPos + 36) {
                             enemy.alive = false;
                             attacking = true;
@@ -174,7 +174,7 @@ public class Hero extends Creature {
                         }
                     } else if (window.mouseX >= xPos + 36 && window.mouseY >= yPos && window.mouseY <= yPos + 36) { //Fight RIGHT
                         stamina = stamina - 1;
-                        window.line(xPos + 36, yPos + 18, xPos + 72, yPos + 18);
+                        window.line(xPos + 36, yPos + 18, xPos + 36 + range, yPos + 18);
                         if (xPos + 72 >= enemy.xPos && xPos + 72 <= enemy.xPos + 36 && yPos >= enemy.yPos - 5 && yPos <= enemy.yPos + 41) {
                             enemy.alive = false;
                             attacking = true;
@@ -183,7 +183,7 @@ public class Hero extends Creature {
                         }
                     } else if (window.mouseX >= xPos + 36 && window.mouseY >= yPos + 36) { //Fight DOWN-RIGHT
                         stamina = stamina - 1;
-                        window.line(xPos + 36, yPos + 36, xPos + 54, yPos + 54);
+                        window.line(xPos + 36, yPos + 36, xPos + 36 + range / 2, yPos + 36 + range / 2);
                         if (xPos + 54 >= enemy.xPos && xPos + 54 <= enemy.xPos + 36 && yPos + 54 >= enemy.yPos && yPos + 54 <= enemy.yPos + 36) {
                             enemy.alive = false;
                             attacking = true;
@@ -192,7 +192,7 @@ public class Hero extends Creature {
                         }
                     } else if (window.mouseX >= xPos && window.mouseX <= xPos + 36 && window.mouseY > yPos) { //Fight DOWN
                         stamina = stamina - 1;
-                        window.line(xPos + 18, yPos + 36, xPos + 18, yPos + 72);
+                        window.line(xPos + 18, yPos + 36, xPos + 18, yPos + 36 + range);
                         if (yPos + 72 >= enemy.yPos && yPos + 72 <= enemy.yPos + 36 && xPos >= enemy.xPos - 5 && xPos <= enemy.xPos + 41) {
                             enemy.alive = false;
                             attacking = true;
@@ -201,7 +201,7 @@ public class Hero extends Creature {
                         }
                     } else if (window.mouseX <= xPos && window.mouseY >= yPos + 36) { //Fight DOWN-LEFT
                         stamina = stamina - 1;
-                        window.line(xPos, yPos + 36, xPos - 18, yPos + 54);
+                        window.line(xPos, yPos + 36, xPos - range / 2, yPos + 36 + range / 2);
                         if (xPos - 18 <= enemy.xPos + 36 && xPos - 18 >= enemy.xPos && yPos + 54 >= enemy.yPos && yPos <= enemy.yPos + 36) {
                             enemy.alive = false;
                             attacking = true;
@@ -220,6 +220,8 @@ public class Hero extends Creature {
         if (alive) {
             window.textAlign(PConstants.LEFT);
             window.textSize(15);
+            window.fill(0);
+            window.stroke(0);
             window.text("Wave " + wave + " / 5", 30, 30);
             window.text("Points: " + points, 30, window.height - 15);
         }

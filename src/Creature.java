@@ -6,22 +6,26 @@ public class Creature {
     float yPos;
     float health;
     float speed;
+    float size;
     boolean alive;
-    int attack;
     boolean attacking;
+    int attack;
     int points;
+    int range;
 
 
-    Creature(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iSpeed, boolean iAlive, int iAttack, boolean iAttacking, int iPoints) {
+    Creature(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iSpeed, float iSize, boolean iAlive, int iAttack, boolean iAttacking, int iPoints, int iRange) {
         window = iWindow;
         xPos = inputPositionX;
         yPos = inputPositionY;
         health = iHealth;
         speed = iSpeed;
+        size = iSize;
         alive = iAlive;
         attack = iAttack;
         attacking = iAttacking;
         points = iPoints;
+        range = iRange;
     }
 
     public void render(Creature creature) {

@@ -1,19 +1,25 @@
 import processing.core.PApplet;
+import processing.core.PConstants;
 
 public class Enemy extends Creature {
-    Enemy(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iSpeed, boolean iAlive, int iAttack, boolean iAttacking, int iPoints) {
-        super(iWindow, inputPositionX, inputPositionY, iHealth, iSpeed, iAlive, iAttack, iAttacking, iPoints);
+    Enemy(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iSpeed, float iSize, boolean iAlive, int iAttack, boolean iAttacking, int iPoints, int iRange) {
+        super(iWindow, inputPositionX, inputPositionY, iHealth, iSpeed, iSize, iAlive, iAttack, iAttacking, iPoints, iRange);
     }
 
-    boolean heroAlive;
-    int size;
+    boolean heroAlive = false;
 
     @Override
     public void render(Creature hero) {
+        if (health <= 0) {
+            alive = false;
+        }
         if (alive && hero.alive) {
             heroAlive = true;
             window.fill(255, 0, 0);
             window.noStroke();
+            window.rectMode(PConstants.CORNER);
+            window.rect(xPos + -18, yPos - 30, health * 3, 10);
+            window.rectMode(PConstants.CORNER);
             window.rect(xPos, yPos, size, size);
         } else {
         }
@@ -47,6 +53,7 @@ public class Enemy extends Creature {
                     yPos <= hero.yPos + 36 && yPos >= hero.yPos - 18 && xPos >= hero.xPos - 18 && xPos <= hero.xPos + 18) {
                 hero.health = hero.health - attack;
                 hero.points -= 50;
+                attacking = true;
                 alive = false;
             } else {
                 attacking = false;

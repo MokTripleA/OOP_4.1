@@ -1,8 +1,8 @@
 import processing.core.PApplet;
 
 public class Minion extends Enemy{
-    Minion(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iSpeed, boolean iAlive, int iAttack, boolean iAttacking, int iPoints) {
-        super(iWindow, inputPositionX, inputPositionY, iHealth, iSpeed, iAlive, iAttack, iAttacking, iPoints);
+    Minion(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iSpeed, float iSize, boolean iAlive, int iAttack, boolean iAttacking, int iPoints, int iRange) {
+        super(iWindow, inputPositionX, inputPositionY, iHealth, iSpeed, iSize, iAlive, iAttack, iAttacking, iPoints, iRange);
     }
 
     @Override
@@ -11,7 +11,7 @@ public class Minion extends Enemy{
             heroAlive = true;
             window.fill(255, 0, 0);
             window.noStroke();
-            window.rect(xPos, yPos, 32, 32);
+            window.rect(xPos, yPos, size, size);
         } else {
         }
     }
