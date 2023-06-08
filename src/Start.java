@@ -7,14 +7,12 @@ public class Start {
     PApplet window;
     boolean starting;
     boolean nextWave = false;
-    boolean reset = false;
     boolean rules = false;
 
-    Start(PApplet iWindow, boolean iStarting, boolean iNextWave, boolean iReset) {
+    Start(PApplet iWindow, boolean iStarting, boolean iNextWave) {
         window = iWindow;
         starting = iStarting;
         nextWave = iNextWave;
-        reset = iReset;
     }
 
     public void starting(Creature creature) {

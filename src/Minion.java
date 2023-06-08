@@ -1,6 +1,6 @@
 import processing.core.PApplet;
 
-public class Minion extends Enemy {
+public final class Minion extends Enemy {
     Minion(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iSpeed, float iSize, boolean iAlive, int iAttack, boolean iAttacking, int iPoints, int iRange) {
         super(iWindow, inputPositionX, inputPositionY, iHealth, iSpeed, iSize, iAlive, iAttack, iAttacking, iPoints, iRange);
     }
