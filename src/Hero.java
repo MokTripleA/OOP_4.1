@@ -47,7 +47,7 @@ public class Hero extends Creature {
     public void fight(Creature enemy) {
         if (alive) {
             if (window.mousePressed) {
-                if (enemy.alive && stamina > 0) {
+                if (enemy.alive && stamina > 1) {
                     if (window.mouseX <= xPos && window.mouseY >= yPos && window.mouseY <= yPos + 36) { //Fight LEFT
                         stamina = stamina - 1;
                         window.line(xPos, yPos + 18, xPos - range, yPos + 18);
@@ -219,8 +219,9 @@ public class Hero extends Creature {
         if (alive) {
             window.textAlign(PConstants.LEFT);
             window.textSize(15);
-            window.fill(0);
             window.stroke(0);
+            window.strokeWeight(5);
+            window.fill(0);
             window.text("Wave " + wave + " / 5", 30, 30);
             window.text("Points: " + points, 30, window.height - 15);
         }

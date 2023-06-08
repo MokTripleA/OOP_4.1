@@ -12,7 +12,7 @@ public class Fenster extends PApplet {
     @Override
     public void settings() {
         for (int x = 0; x < Gegner.length; x++) {
-            Gegner[x] = new Minion(this, random(0, 650), random(0, 720), 20, 1, 32, true, 20, false, 0, 0);
+            Gegner[x] = new Minion(this, random(0, 500), random(0, 720), 20, 1, 32, true, 20, false, 0, 0);
         }
         size(1280, 720);
     }
@@ -28,14 +28,15 @@ public class Fenster extends PApplet {
             start.starting(Held);
             start.nextWave(Held, Gegner[x]);
             Held.render(Gegner[x]);
-            Gegner[x].render(Held);
-            Gegner[x].walk(Held.xPos, Held.yPos);
             Held.healthbar(Gegner[x]);
             Held.ultimate(Gegner[x]);
             Held.fight(Gegner[x]);
+            Gegner[x].render(Held);
             Gegner[x].fight(Held);
+            if (Held.alive) {
+                Gegner[x].walk(Held.xPos, Held.yPos);
+            }
             Held.points();
-            System.out.println(Gegner[x].alive);
         }
     }
 }

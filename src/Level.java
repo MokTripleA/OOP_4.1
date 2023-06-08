@@ -14,6 +14,9 @@ public class Level extends PApplet {
 
     public void generate(Creature hero) {
         if (hero.alive) {
+            window.textSize(15);
+            window.stroke(0);
+            window.strokeWeight(5);
             window.fill(200);
             window.rect(0, 0, window.width, window.height);
             window.fill(0, 200, 0);

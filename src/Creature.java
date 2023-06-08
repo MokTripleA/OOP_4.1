@@ -1,6 +1,6 @@
 import processing.core.PApplet;
 
-public class Creature {
+public abstract class Creature {
     PApplet window;
     float xPos;
     float yPos;
@@ -28,12 +28,9 @@ public class Creature {
         range = iRange;
     }
 
-    public void render(Creature creature) {
-    }
+    public abstract void render(Creature creature);
 
-    public void walk(float x, float y) {
-    }
+    public abstract void walk(float x, float y);
 
-    public void fight(Creature creature) {
-    }
+    public abstract void fight(Creature creature);
 }
