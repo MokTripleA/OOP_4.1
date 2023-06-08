@@ -8,7 +8,6 @@ public class Fenster extends PApplet {
     Minion[] Gegner = new Minion[Enemies];
     Level background = new Level(this, 860, 720);
     Start start = new Start(this, true, false, false);
-    Levelup levelup = new Levelup(this);
 
     @Override
     public void settings() {
@@ -27,7 +26,6 @@ public class Fenster extends PApplet {
         Held.stamina();
         for (int x = 0; x < Gegner.length; x++) {
             start.nextWave(Held, Gegner[x]);
-            levelup.levelup(start);
             Held.render(Gegner[x]);
             Gegner[x].render(Held);
             Gegner[x].walk(Held.xPos, Held.yPos);
