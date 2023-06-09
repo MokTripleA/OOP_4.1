@@ -56,7 +56,7 @@ public class Start {
     }
 
     public void ending(Hero hero) {
-        if (hero.gameOver) {
+        if (hero.gameOver && !nextWave) {
             hero.alive = false;
             window.background(0);
             window.textSize(30);
@@ -82,17 +82,32 @@ public class Start {
             window.background(0);
             window.textSize(30);
             window.textAlign(PConstants.CENTER);
-            window.fill(0, 102, 0);
+            window.fill(76, 135, 0);
             window.text("WAVE COMPLETED", window.width / 2 + 1, 120 + 1);
             window.text("Press SPACE for next WAVE!", window.width / 2 + 1, 300 + 1);
-            window.fill(0, 255, 0);
+            window.fill(128, 255, 0);
             window.text("WAVE COMPLETED", window.width / 2, 120);
             window.text("Press SPACE for next WAVE!", window.width / 2, 300);
             window.textAlign(PConstants.LEFT);
             window.fill(0);
-            if (window.keyPressed && window.key == 32) {
-                hero.reset();
-            }
+        }
+    }
+
+    public void win(Hero hero, Enemy enemy) {
+        if (hero.wave == 6) {
+            hero.alive = false;
+            enemy.alive = false;
+            window.background(0);
+            window.textSize(30);
+            window.textAlign(PConstants.CENTER);
+            window.fill(76, 135, 0);
+            window.text("YOU WON!", window.width / 2 + 1, 120 + 1);
+            window.text("Press ESCAPE to exit!", window.width / 2 + 1, 300 + 1);
+            window.fill(128, 255, 0);
+            window.text("YOU WON!", window.width / 2, 120);
+            window.text("Press ESCAPE to exit!", window.width / 2, 300);
+            window.textAlign(PConstants.LEFT);
+            window.fill(0);
         }
     }
 

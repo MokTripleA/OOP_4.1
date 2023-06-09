@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PConstants;
 
 public final class Minion extends Enemy {
     Minion(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iSpeed, float iSize, boolean iAlive, int iAttack, boolean iAttacking, int iPoints, int iRange) {
@@ -7,9 +8,13 @@ public final class Minion extends Enemy {
 
     @Override
     public void render(Creature hero) {
+        if (health <= 0) {
+            alive = false;
+        }
         if (alive && hero.alive) {
             window.fill(255, 0, 0);
             window.noStroke();
+            window.rectMode(PConstants.CORNER);
             window.rect(xPos, yPos, size, size);
         } else {
         }

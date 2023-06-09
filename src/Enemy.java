@@ -15,6 +15,7 @@ public class Enemy extends Creature {
             window.fill(255, 0, 0);
             window.noStroke();
             window.rectMode(PConstants.CORNER);
+            window.text("Health +" + health, xPos, yPos - 20);
             window.rect(xPos + -18, yPos - 30, health * 3, 10);
             window.rectMode(PConstants.CORNER);
             window.rect(xPos, yPos, size, size);

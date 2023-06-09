@@ -130,7 +130,7 @@ public final class Hero extends Creature {
 
     public void healthbar(Creature enemy) {
         if (alive) {
-            if (health == 0) {
+            if (health <= 0) {
                 gameOver = true;
             }
             window.textAlign(PConstants.LEFT);
@@ -183,6 +183,12 @@ public final class Hero extends Creature {
             if (xPos + 18 - diameter / 2 <= 0 || xPos + 18 + diameter / 2 >= 860 || yPos + 18 - diameter / 2 <= 0 || yPos + 18 + diameter / 2 >= 720) {
                 circle = false;
             }
+            if (enemy.xPos <= xPos + 18 + diameter / 2 && enemy.yPos >= yPos + 18 - diameter / 2 && enemy.yPos <= yPos + 18 + diameter / 2 || //Right ENEMY
+                    enemy.xPos + 36 >= xPos + 18 - diameter / 2 && enemy.yPos >= yPos + 18 - diameter / 2 && enemy.yPos <= yPos + 18 + diameter / 2 || //Left ENEMY
+                    enemy.yPos + 36 >= yPos + 18 - diameter / 2 && enemy.xPos >= xPos + 18 - diameter / 2 && enemy.xPos + 36 <= xPos + 18 + diameter / 2 || //Top ENEMY
+                    enemy.yPos <= yPos + 18 + diameter / 2 && enemy.xPos >= xPos + 18 - diameter / 2 && enemy.xPos + 36 <= xPos + 18 + diameter / 2) { //Bottom ENEMY
+                enemy.health -= attack * 5;
+            }
         }
     }
 
@@ -228,7 +234,7 @@ public final class Hero extends Creature {
     }
 
     public void reset() {
-        xPos = 100;
+        xPos = 750;
         yPos = 320;
         alive = true;
     }
