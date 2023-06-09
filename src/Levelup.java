@@ -1,3 +1,3 @@
 public interface Levelup {
-    public void render();
+     void render();
 }

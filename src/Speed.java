@@ -1,8 +1,7 @@
-import processing.core.PApplet;
+public class Speed extends Items {
 
-public class Upgrade implements Levelup{
-
-    PApplet window;
+    Speed(Levelup levelup) {
+    }
 
     @Override
     public void render() {
@@ -11,6 +10,7 @@ public class Upgrade implements Levelup{
         window.fill(0);
         window.rect(182, window.height / 2, 182, 182);
         window.rect(546, window.height / 2, 182, 182);
+        window.fill(0, 0, 255);
         window.rect(910, window.height / 2, 182, 182);
     }
 }

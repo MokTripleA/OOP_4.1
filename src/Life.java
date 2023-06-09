@@ -1,8 +1,8 @@
-import processing.core.PApplet;
+public class Life extends Items{
 
-public class Upgrade implements Levelup{
 
-    PApplet window;
+    Life(Levelup levelup) {
+    }
 
     @Override
     public void render() {
@@ -10,7 +10,9 @@ public class Upgrade implements Levelup{
         window.strokeWeight(5);
         window.fill(0);
         window.rect(182, window.height / 2, 182, 182);
+        window.fill(0, 255, 0);
         window.rect(546, window.height / 2, 182, 182);
+        window.fill(0);
         window.rect(910, window.height / 2, 182, 182);
     }
 }
