@@ -1,11 +1,16 @@
 import processing.core.PApplet;
 
-public class Upgrade implements Levelup{
+public class Upgrade implements Levelup {
 
     PApplet window;
 
+    Upgrade(PApplet iWindow) {
+        window = iWindow;
+    }
+
+
     @Override
-    public void render() {
+    public void render(Hero hero, Start start) {
         window.stroke(255);
         window.strokeWeight(5);
         window.fill(0);

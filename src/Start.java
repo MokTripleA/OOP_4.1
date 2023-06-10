@@ -6,13 +6,15 @@ public class Start {
 
     PApplet window;
     boolean starting;
-    boolean nextWave = false;
+    boolean nextWave;
+    boolean win;
     boolean rules = false;
 
-    Start(PApplet iWindow, boolean iStarting, boolean iNextWave) {
+    Start(PApplet iWindow, boolean iStarting, boolean iNextWave, boolean iWin) {
         window = iWindow;
         starting = iStarting;
         nextWave = iNextWave;
+        win = iWin;
     }
 
     public void starting(Creature creature) {
@@ -76,7 +78,7 @@ public class Start {
     }
 
     public void nextWave(Hero hero, Enemy enemy) {
-        if (nextWave && !hero.gameOver) {
+        if (nextWave && !hero.gameOver && hero.wave <= 4) {
             hero.alive = false;
             enemy.alive = false;
             window.background(0);
@@ -84,17 +86,20 @@ public class Start {
             window.textAlign(PConstants.CENTER);
             window.fill(76, 135, 0);
             window.text("WAVE COMPLETED", window.width / 2 + 1, 120 + 1);
-            window.text("Press SPACE for next WAVE!", window.width / 2 + 1, 300 + 1);
+            window.text("CHOOSE your UPGRADE!", window.width / 2 + 1, 300 + 1);
             window.fill(128, 255, 0);
             window.text("WAVE COMPLETED", window.width / 2, 120);
-            window.text("Press SPACE for next WAVE!", window.width / 2, 300);
+            window.text("CHOOSE your UPGRADE!", window.width / 2, 300);
             window.textAlign(PConstants.LEFT);
             window.fill(0);
         }
     }
 
     public void win(Hero hero, Enemy enemy) {
-        if (hero.wave == 6) {
+        if (hero.wave >= 5) {
+            win = true;
+            nextWave = false;
+            hero.gameOver = false;
             hero.alive = false;
             enemy.alive = false;
             window.background(0);

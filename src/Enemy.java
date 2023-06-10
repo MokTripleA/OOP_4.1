@@ -12,13 +12,14 @@ public class Enemy extends Creature {
             alive = false;
         }
         if (alive && hero.alive) {
-            window.fill(255, 0, 0);
             window.noStroke();
-            window.rectMode(PConstants.CORNER);
-            window.text("Health +" + health, xPos, yPos - 20);
-            window.rect(xPos + -18, yPos - 30, health * 3, 10);
+            window.fill(255, 0, 0);
             window.rectMode(PConstants.CORNER);
             window.rect(xPos, yPos, size, size);
+            window.textAlign(PConstants.CENTER);
+            window.textSize(18);
+            window.fill(0);
+            window.text((int) health, xPos + 18, yPos + 18);
         } else {
         }
     }
@@ -44,7 +45,7 @@ public class Enemy extends Creature {
     }
 
     public void fight(Creature hero) {
-        if (alive) {
+        if (alive && !attacking) {
             if (xPos >= hero.xPos && xPos <= hero.xPos + 36 && yPos >= hero.yPos - 18 && yPos <= hero.yPos + 18 ||
                     yPos >= hero.yPos - 36 && yPos <= hero.yPos + 36 && xPos >= hero.xPos - 18 && xPos <= hero.xPos + 18 ||
                     xPos <= hero.xPos + 36 && xPos >= hero.xPos - 36 && yPos >= hero.yPos - 18 && yPos <= hero.yPos + 18 ||
@@ -52,8 +53,12 @@ public class Enemy extends Creature {
                 hero.health = hero.health - attack;
                 hero.points -= 50;
                 attacking = true;
-                alive = false;
             } else {
+                attacking = false;
+            }
+        }
+        if (attacking) {
+            if (window.frameCount % 60 == 1) {
                 attacking = false;
             }
         }

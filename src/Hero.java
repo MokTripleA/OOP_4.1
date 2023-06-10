@@ -8,7 +8,7 @@ public final class Hero extends Creature {
 
     int heroKills = 0;
     int stamina = 10;
-    int wave = 1;
+    int wave = 0;
     float diameter = 0;
     boolean ultimate = false;
     boolean gameOver = false;
@@ -19,6 +19,11 @@ public final class Hero extends Creature {
             window.fill(0);
             window.noStroke();
             window.rect(xPos, yPos, 36, 36); //Character
+            window.textSize(20);
+            window.textAlign(PConstants.LEFT);
+            window.text("Health: " + health, 1000, 130); //Show Stat-Health
+            window.text("Attack: " + attack, 1000, 150); //Show Stat-Attack
+            window.text("Speed: " + speed, 1000, 170); //Show Stat-Speed
         }
     }
 
@@ -52,7 +57,7 @@ public final class Hero extends Creature {
                         stamina = stamina - 1;
                         window.line(xPos, yPos + 18, xPos - range, yPos + 18);
                         if (xPos - 36 <= enemy.xPos + 36 && xPos - 36 >= enemy.xPos && yPos >= enemy.yPos - 5 && yPos + 36 <= enemy.yPos + 41) {
-                            enemy.alive = false;
+                            enemy.health -= attack;
                             attacking = true;
                             heroKills += 1;
                             points += 100;
@@ -61,7 +66,7 @@ public final class Hero extends Creature {
                         stamina = stamina - 1;
                         window.line(xPos, yPos, xPos - range / 2, yPos - range / 2);
                         if (xPos - 18 >= enemy.xPos && xPos - 18 <= enemy.xPos + 36 && yPos - 18 >= enemy.yPos && yPos - 18 <= enemy.yPos + 36) {
-                            enemy.alive = false;
+                            enemy.health -= attack;
                             attacking = true;
                             heroKills += 1;
                             points += 100;
@@ -70,7 +75,7 @@ public final class Hero extends Creature {
                         stamina = stamina - 1;
                         window.line(xPos + 18, yPos, xPos + 18, yPos - range);
                         if (yPos - 36 <= enemy.yPos + 36 && yPos - 36 >= enemy.yPos && xPos >= enemy.xPos - 5 && xPos + 36 <= enemy.xPos + 41) {
-                            enemy.alive = false;
+                            enemy.health -= attack;
                             attacking = true;
                             heroKills += 1;
                             points += 100;
@@ -79,7 +84,7 @@ public final class Hero extends Creature {
                         stamina = stamina - 1;
                         window.line(xPos + 36, yPos, xPos + 36 + range / 2, yPos - range / 2);
                         if (xPos + 54 >= enemy.xPos && xPos + 54 <= enemy.xPos + 36 && yPos - 18 >= enemy.yPos && yPos - 18 <= enemy.yPos + 36) {
-                            enemy.alive = false;
+                            enemy.health -= attack;
                             attacking = true;
                             heroKills += 1;
                             points += 100;
@@ -88,7 +93,7 @@ public final class Hero extends Creature {
                         stamina = stamina - 1;
                         window.line(xPos + 36, yPos + 18, xPos + 36 + range, yPos + 18);
                         if (xPos + 72 >= enemy.xPos && xPos + 72 <= enemy.xPos + 36 && yPos >= enemy.yPos - 5 && yPos <= enemy.yPos + 41) {
-                            enemy.alive = false;
+                            enemy.health -= attack;
                             attacking = true;
                             heroKills += 1;
                             points += 100;
@@ -97,7 +102,7 @@ public final class Hero extends Creature {
                         stamina = stamina - 1;
                         window.line(xPos + 36, yPos + 36, xPos + 36 + range / 2, yPos + 36 + range / 2);
                         if (xPos + 54 >= enemy.xPos && xPos + 54 <= enemy.xPos + 36 && yPos + 54 >= enemy.yPos && yPos + 54 <= enemy.yPos + 36) {
-                            enemy.alive = false;
+                            enemy.health -= attack;
                             attacking = true;
                             heroKills += 1;
                             points += 100;
@@ -106,7 +111,7 @@ public final class Hero extends Creature {
                         stamina = stamina - 1;
                         window.line(xPos + 18, yPos + 36, xPos + 18, yPos + 36 + range);
                         if (yPos + 72 >= enemy.yPos && yPos + 72 <= enemy.yPos + 36 && xPos >= enemy.xPos - 5 && xPos <= enemy.xPos + 41) {
-                            enemy.alive = false;
+                            enemy.health -= attack;
                             attacking = true;
                             heroKills += 1;
                             points += 100;
@@ -115,7 +120,7 @@ public final class Hero extends Creature {
                         stamina = stamina - 1;
                         window.line(xPos, yPos + 36, xPos - range / 2, yPos + 36 + range / 2);
                         if (xPos - 18 <= enemy.xPos + 36 && xPos - 18 >= enemy.xPos && yPos + 54 >= enemy.yPos && yPos <= enemy.yPos + 36) {
-                            enemy.alive = false;
+                            enemy.health -= attack;
                             attacking = true;
                             heroKills += 1;
                             points += 100;
@@ -234,8 +239,8 @@ public final class Hero extends Creature {
     }
 
     public void reset() {
+        alive = true;
         xPos = 750;
         yPos = 320;
-        alive = true;
     }
 }

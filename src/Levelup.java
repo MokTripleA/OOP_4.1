@@ -1,3 +1,3 @@
 public interface Levelup {
-     void render();
+    void render(Hero hero, Start start);
 }

@@ -12,10 +12,14 @@ public final class Minion extends Enemy {
             alive = false;
         }
         if (alive && hero.alive) {
-            window.fill(255, 0, 0);
             window.noStroke();
+            window.fill(255, 0, 0);
             window.rectMode(PConstants.CORNER);
             window.rect(xPos, yPos, size, size);
+            window.textAlign(PConstants.CENTER);
+            window.textSize(18);
+            window.fill(0);
+            window.text((int) health, xPos + 18, yPos + 18);
         } else {
         }
     }

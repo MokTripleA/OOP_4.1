@@ -3,13 +3,9 @@ import processing.core.PApplet;
 public abstract class Items implements Levelup {
 
     PApplet window;
+    protected Levelup levelup;
 
-    private Levelup levelup;
-
-    @Override
-    public void render() {
-        levelup.render();
-
+    public void render(Hero hero, Start start) {
+        levelup.render(hero, start);
     }
-
 }

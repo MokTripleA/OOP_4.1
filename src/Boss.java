@@ -12,13 +12,14 @@ public final class Boss extends Enemy {
             alive = false;
         }
         if (alive && hero.alive) {
-            window.fill(255, 0, 0);
             window.noStroke();
-            window.rectMode(PConstants.CORNER);
-            window.text("Health +" + health, xPos, yPos - 20);
-            window.rect(xPos + -18, yPos - 30, health * 3, 10);
+            window.fill(255, 0, 0);
             window.rectMode(PConstants.CORNER);
             window.rect(xPos, yPos, size, size);
+            window.textAlign(PConstants.CENTER);
+            window.textSize(18);
+            window.fill(0);
+            window.text((int) health, xPos + 18, yPos + 18);
         } else {
         }
     }
