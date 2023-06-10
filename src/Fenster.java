@@ -13,10 +13,9 @@ public class Fenster extends PApplet {
     Boss boss = new Boss(this, 100, 320, 1000, 0.5f, 128, false, 80, false, 0, 0);
     Level level = new Level(this, 860, 720);
     Start start = new Start(this, true, false, false);
-    Upgrade upgrade = new Upgrade(this);
-    Levelup life = new Life(this, new Upgrade(this));
-    Levelup strength = new Strength(this, new Upgrade(this));
-    Levelup speed = new Speed(this, new Upgrade(this));
+    Levelup life = new Life(this, new upgradeHealth(this));
+    Levelup strength = new Strength(this, new upgradeAttack(this));
+    Levelup speed = new Speed(this, new upgradeSpeed(this));
 
     @Override
     public void settings() {

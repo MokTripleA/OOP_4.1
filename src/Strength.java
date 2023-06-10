@@ -4,6 +4,7 @@ import processing.core.PImage;
 public class Strength extends Items {
 
     public Strength(PApplet iWindow, Levelup iLevelup) {
+        super(iLevelup);
         window = iWindow;
         levelup = iLevelup;
     }
@@ -15,6 +16,7 @@ public class Strength extends Items {
     public void render(Hero hero, Start start) {
         window.stroke(255);
         window.strokeWeight(5);
+        window.fill(0);
         if (rarity <= 4) {
             window.stroke(0, 255, 0);
         } else if (rarity > 4 && rarity <= 6) {
@@ -46,8 +48,7 @@ public class Strength extends Items {
                 }
             }
         }
-        window.rect(910, window.height / 2, 182, 182);
-        window.fill(0);
+        levelup.render(hero, start);
         strength = window.loadImage("Strength.png");
         window.image(strength, 910, window.height / 2);
     }

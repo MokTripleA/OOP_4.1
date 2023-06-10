@@ -4,6 +4,7 @@ import processing.core.PImage;
 public class Speed extends Items {
 
     public Speed(PApplet iWindow, Levelup iLevelup) {
+        super(iLevelup);
         window = iWindow;
         levelup = iLevelup;
     }
@@ -15,6 +16,7 @@ public class Speed extends Items {
     public void render(Hero hero, Start start) {
         window.stroke(255);
         window.strokeWeight(5);
+        window.fill(0);
         if (rarity <= 4) {
             window.stroke(0, 255, 0);
         } else if (rarity > 4 && rarity <= 6) {
@@ -46,8 +48,7 @@ public class Speed extends Items {
                 }
             }
         }
-        window.rect(546, window.height / 2, 182, 182);
-        window.fill(0);
+        levelup.render(hero, start);
         speed = window.loadImage("Speed.png");
         window.image(speed, 546, window.height / 2);
     }
