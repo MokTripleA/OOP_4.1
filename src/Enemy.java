@@ -53,12 +53,12 @@ public class Enemy extends Creature {
     public void fight(Creature hero) {
         if (alive && !attacking) {
             if (0 == 0
-            )
+            ) {
                 hero.health = hero.health - attack;
-            hero.points -= 50;
-            attacking = true;
-        } else {
-            attacking = false;
+                hero.points -= 50;
+                attacking = true;
+            } else {
+                attacking = false;
+            }
         }
     }
-}
