@@ -2,6 +2,12 @@ import processing.core.PApplet;
 import processing.core.PConstants;
 
 public class Enemy extends Creature {
+    {
+        if (window.frameCount % 60 == 1) {
+            attacking = false;
+        }
+    }
+
     Enemy(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iSpeed, float iSize, boolean iAlive, int iAttack, boolean iAttacking, int iPoints, int iRange) {
         super(iWindow, inputPositionX, inputPositionY, iHealth, iSpeed, iSize, iAlive, iAttack, iAttacking, iPoints, iRange);
     }
@@ -26,41 +32,33 @@ public class Enemy extends Creature {
 
     public void walk(float x, float y) {
         if (alive) {
-            if (xPos != x && yPos != y) {
-                if (xPos < x) {
+            if (xPos + size / 2 != x + 18 && yPos + size / 2 != y + 18) {
+                if (xPos + size / 2 < x + 18) {
                     xPos += speed;
                 }
-                if (xPos > x) {
+                if (xPos + size / 2 > x + 18) {
                     xPos -= speed;
                 }
-                if (yPos < y) {
+                if (yPos + size / 2 < y + 18) {
                     yPos += speed;
                 }
-                if (yPos > y) {
+                if (yPos + size / 2 > y + 18) {
                     yPos -= speed;
                 }
-            } else if (xPos == x && yPos == y) {
+            } else if (xPos + size / 2 == x + 18 && yPos + size / 2 == y + 18) {
             }
         }
     }
 
     public void fight(Creature hero) {
         if (alive && !attacking) {
-            if (xPos >= hero.xPos && xPos <= hero.xPos + 36 && yPos >= hero.yPos - 18 && yPos <= hero.yPos + 18 ||
-                    yPos >= hero.yPos - 36 && yPos <= hero.yPos + 36 && xPos >= hero.xPos - 18 && xPos <= hero.xPos + 18 ||
-                    xPos <= hero.xPos + 36 && xPos >= hero.xPos - 36 && yPos >= hero.yPos - 18 && yPos <= hero.yPos + 18 ||
-                    yPos <= hero.yPos + 36 && yPos >= hero.yPos - 18 && xPos >= hero.xPos - 18 && xPos <= hero.xPos + 18) {
+            if (0 == 0
+            )
                 hero.health = hero.health - attack;
-                hero.points -= 50;
-                attacking = true;
-            } else {
-                attacking = false;
-            }
-        }
-        if (attacking) {
-            if (window.frameCount % 60 == 1) {
-                attacking = false;
-            }
+            hero.points -= 50;
+            attacking = true;
+        } else {
+            attacking = false;
         }
     }
 }

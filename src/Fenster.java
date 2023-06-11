@@ -9,9 +9,9 @@ public class Fenster extends PApplet {
     boolean anyEnemyAlive = true;
     boolean runOnce = false;
 
-    Hero held = new Hero(this, 750, 320, 100, 1, 32, true, 20, false, 0, 36);
+    Hero held = new Hero(this, 750, 320, 100, 1, 36, true, 20, false, 0, 36);
     Minion[] gegner = new Minion[enemies];
-    Boss boss = new Boss(this, 100, 320, 1000, 0.5f, 128, false, 80, false, 0, 0);
+    Boss dickerGegner = new Boss(this, 200, 320, 1000, 0.5f, 128, false, 80, false, 0, 0);
     Level level = new Level(this, 860, 720);
     Start start = new Start(this, true, false, false);
     Levelup life = new Life(this, new upgradeHealth(this));
@@ -21,7 +21,7 @@ public class Fenster extends PApplet {
     @Override
     public void settings() {
         for (int x = 0; x < gegner.length; x++) {
-            gegner[x] = new Minion(this, random(0, 500), random(0, 720), enemyHealth, enemySpeed, 32, true, enemyAttack, false, 0, 0);
+            gegner[x] = new Minion(this, random(0, 500), random(0, 720), enemyHealth, enemySpeed, 36, true, enemyAttack, false, 0, 0);
         }
         size(1280, 720);
     }
@@ -32,8 +32,12 @@ public class Fenster extends PApplet {
         start.starting(held);
         start.ending(held);
         held.walk(0, 0);
+        held.fight(dickerGegner);
         held.stamina();
         held.points();
+        dickerGegner.render(held);
+        dickerGegner.fight(held);
+        dickerGegner.walk(held.xPos, held.yPos);
         for (int x = 0; x < gegner.length; x++) {
             start.starting(held);
             start.nextWave(held, gegner[x]);
@@ -48,6 +52,8 @@ public class Fenster extends PApplet {
                 gegner[x].walk(held.xPos, held.yPos);
             }
         }
+
+
         for (int y = 0; y < enemies; y++) {
             if (gegner[y].alive) {
                 anyEnemyAlive = true;
@@ -56,13 +62,15 @@ public class Fenster extends PApplet {
                 anyEnemyAlive = false;
             }
         }
-        if (!anyEnemyAlive && !start.win) {
+        if (!anyEnemyAlive && !start.win && !dickerGegner.alive) {
             if (frameCount % 60 == 1) {
                 start.nextWave = true;
             }
         }
+
+
         if (start.nextWave) {
-            if (runOnce) {
+            if (runOnce && held.wave < 5) {
                 life = new Life(this, new upgradeHealth(this));
                 speed = new Speed(this, new upgradeSpeed(this));
                 strength = new Strength(this, new upgradeAttack(this));
@@ -78,18 +86,18 @@ public class Fenster extends PApplet {
                     held.wave += 1;
                     held.points += 500;
                     held.reset();
-                    if (held.wave < 7) {
-                        enemyHealth += 20;
-                        enemyAttack += 10;
-                        enemySpeed += 0.2;
-                        for (int z = 0; z < enemies; z++) {
-                            gegner[z].alive = false;
-                        }
+                    enemyHealth += 20;
+                    enemyAttack += 10;
+                    enemySpeed += 0.2;
+                    for (int z = 0; z < enemies; z++) {
+                        gegner[z].alive = false;
+                    }
+                    if (held.wave < 5) {
                         for (int z = 0; z < enemies; z++) {
                             gegner[z] = new Minion(this, random(0, 500), random(0, 720), enemyHealth, enemySpeed, 32, true, enemyAttack, false, 0, 0);
                         }
-                    } else if (held.wave >= 7) {
-                        start.win = true;
+                    } else if (held.wave == 5) {
+                        dickerGegner.alive = true;
                     }
                     start.nextWave = false;
                     runOnce = true;

@@ -96,7 +96,7 @@ public class Start {
     }
 
     public void win(Hero hero, Enemy enemy) {
-        if (hero.wave >= 5) {
+        if (hero.wave > 5) {
             win = true;
             nextWave = false;
             hero.gameOver = false;
