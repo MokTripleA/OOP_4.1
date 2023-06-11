@@ -7,8 +7,9 @@ public class Fenster extends PApplet {
     int enemyAttack = 20;
     float enemySpeed = 1;
     boolean anyEnemyAlive = true;
+    boolean runOnce = false;
 
-    Hero held = new Hero(this, 750, 320, 3000, 1, 32, true, 20, false, 0, 36);
+    Hero held = new Hero(this, 750, 320, 100, 1, 32, true, 20, false, 0, 36);
     Minion[] gegner = new Minion[enemies];
     Boss boss = new Boss(this, 100, 320, 1000, 0.5f, 128, false, 80, false, 0, 0);
     Level level = new Level(this, 860, 720);
@@ -61,6 +62,12 @@ public class Fenster extends PApplet {
             }
         }
         if (start.nextWave) {
+            if (runOnce) {
+                life = new Life(this, new upgradeHealth(this));
+                speed = new Speed(this, new upgradeSpeed(this));
+                strength = new Strength(this, new upgradeAttack(this));
+                runOnce = false;
+            }
             life.render(held, start);
             speed.render(held, start);
             strength.render(held, start);
@@ -71,7 +78,7 @@ public class Fenster extends PApplet {
                     held.wave += 1;
                     held.points += 500;
                     held.reset();
-                    if (held.wave <= 5) {
+                    if (held.wave < 7) {
                         enemyHealth += 20;
                         enemyAttack += 10;
                         enemySpeed += 0.2;
@@ -81,13 +88,11 @@ public class Fenster extends PApplet {
                         for (int z = 0; z < enemies; z++) {
                             gegner[z] = new Minion(this, random(0, 500), random(0, 720), enemyHealth, enemySpeed, 32, true, enemyAttack, false, 0, 0);
                         }
-                    } else if (held.wave >= 6) {
-                        boss.alive = true;
-                        boss.render(held);
-                        boss.fight(held);
-                        boss.walk(held.xPos, held.yPos);
+                    } else if (held.wave >= 7) {
+                        start.win = true;
                     }
                     start.nextWave = false;
+                    runOnce = true;
                 }
             }
         }

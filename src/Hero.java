@@ -7,8 +7,8 @@ public final class Hero extends Creature {
     }
 
     int heroKills = 0;
-    int stamina = 10;
     int wave = 0;
+    float stamina = 10;
     float diameter = 0;
     boolean ultimate = false;
     boolean gameOver = false;
@@ -21,9 +21,9 @@ public final class Hero extends Creature {
             window.rect(xPos, yPos, 36, 36); //Character
             window.textSize(20);
             window.textAlign(PConstants.LEFT);
-            window.text("Health: " + health, 1000, 130); //Show Stat-Health
-            window.text("Attack: " + attack, 1000, 150); //Show Stat-Attack
-            window.text("Speed: " + speed, 1000, 170); //Show Stat-Speed
+            window.text("Health: " + health, 880, 30); //Show Stat-Health
+            window.text("Attack: " + attack, 880, 50); //Show Stat-Attack
+            window.text("Speed: " + speed, 880, 70); //Show Stat-Speed
         }
     }
 
@@ -54,7 +54,7 @@ public final class Hero extends Creature {
             if (window.mousePressed) {
                 if (enemy.alive && stamina > 1) {
                     if (window.mouseX <= xPos && window.mouseY >= yPos && window.mouseY <= yPos + 36) { //Fight LEFT
-                        stamina = stamina - 1;
+                        stamina = stamina - 0.5f;
                         window.line(xPos, yPos + 18, xPos - range, yPos + 18);
                         if (xPos - 36 <= enemy.xPos + 36 && xPos - 36 >= enemy.xPos && yPos >= enemy.yPos - 5 && yPos + 36 <= enemy.yPos + 41) {
                             enemy.health -= attack;
@@ -63,7 +63,7 @@ public final class Hero extends Creature {
                             points += 100;
                         }
                     } else if (window.mouseX <= xPos && window.mouseY <= yPos) { //Fight UP-LEFT
-                        stamina = stamina - 1;
+                        stamina = stamina - 0.5f;
                         window.line(xPos, yPos, xPos - range / 2, yPos - range / 2);
                         if (xPos - 18 >= enemy.xPos && xPos - 18 <= enemy.xPos + 36 && yPos - 18 >= enemy.yPos && yPos - 18 <= enemy.yPos + 36) {
                             enemy.health -= attack;
@@ -72,7 +72,7 @@ public final class Hero extends Creature {
                             points += 100;
                         }
                     } else if (window.mouseX >= xPos && window.mouseX <= xPos + 36 && window.mouseY <= yPos) { //Fight UP
-                        stamina = stamina - 1;
+                        stamina = stamina - 0.5f;
                         window.line(xPos + 18, yPos, xPos + 18, yPos - range);
                         if (yPos - 36 <= enemy.yPos + 36 && yPos - 36 >= enemy.yPos && xPos >= enemy.xPos - 5 && xPos + 36 <= enemy.xPos + 41) {
                             enemy.health -= attack;
@@ -81,7 +81,7 @@ public final class Hero extends Creature {
                             points += 100;
                         }
                     } else if (window.mouseX >= xPos + 36 && window.mouseY <= yPos) { //Fight UP-RIGHT
-                        stamina = stamina - 1;
+                        stamina = stamina - 0.5f;
                         window.line(xPos + 36, yPos, xPos + 36 + range / 2, yPos - range / 2);
                         if (xPos + 54 >= enemy.xPos && xPos + 54 <= enemy.xPos + 36 && yPos - 18 >= enemy.yPos && yPos - 18 <= enemy.yPos + 36) {
                             enemy.health -= attack;
@@ -90,7 +90,7 @@ public final class Hero extends Creature {
                             points += 100;
                         }
                     } else if (window.mouseX >= xPos + 36 && window.mouseY >= yPos && window.mouseY <= yPos + 36) { //Fight RIGHT
-                        stamina = stamina - 1;
+                        stamina = stamina - 0.5f;
                         window.line(xPos + 36, yPos + 18, xPos + 36 + range, yPos + 18);
                         if (xPos + 72 >= enemy.xPos && xPos + 72 <= enemy.xPos + 36 && yPos >= enemy.yPos - 5 && yPos <= enemy.yPos + 41) {
                             enemy.health -= attack;
@@ -99,7 +99,7 @@ public final class Hero extends Creature {
                             points += 100;
                         }
                     } else if (window.mouseX >= xPos + 36 && window.mouseY >= yPos + 36) { //Fight DOWN-RIGHT
-                        stamina = stamina - 1;
+                        stamina = stamina - 0.5f;
                         window.line(xPos + 36, yPos + 36, xPos + 36 + range / 2, yPos + 36 + range / 2);
                         if (xPos + 54 >= enemy.xPos && xPos + 54 <= enemy.xPos + 36 && yPos + 54 >= enemy.yPos && yPos + 54 <= enemy.yPos + 36) {
                             enemy.health -= attack;
@@ -108,7 +108,7 @@ public final class Hero extends Creature {
                             points += 100;
                         }
                     } else if (window.mouseX >= xPos && window.mouseX <= xPos + 36 && window.mouseY > yPos) { //Fight DOWN
-                        stamina = stamina - 1;
+                        stamina = stamina - 0.5f;
                         window.line(xPos + 18, yPos + 36, xPos + 18, yPos + 36 + range);
                         if (yPos + 72 >= enemy.yPos && yPos + 72 <= enemy.yPos + 36 && xPos >= enemy.xPos - 5 && xPos <= enemy.xPos + 41) {
                             enemy.health -= attack;
@@ -117,7 +117,7 @@ public final class Hero extends Creature {
                             points += 100;
                         }
                     } else if (window.mouseX <= xPos && window.mouseY >= yPos + 36) { //Fight DOWN-LEFT
-                        stamina = stamina - 1;
+                        stamina = stamina - 0.5f;
                         window.line(xPos, yPos + 36, xPos - range / 2, yPos + 36 + range / 2);
                         if (xPos - 18 <= enemy.xPos + 36 && xPos - 18 >= enemy.xPos && yPos + 54 >= enemy.yPos && yPos <= enemy.yPos + 36) {
                             enemy.health -= attack;
@@ -218,7 +218,7 @@ public final class Hero extends Creature {
             window.noStroke();
             window.rect(923, 503, stamina * 30, 20); //Stamina
             window.fill(0);
-            window.text(stamina + " / 10", 1060, 517);
+            window.text((int) stamina + " / 10", 1060, 517);
             window.stroke(0);
         }
         if (window.frameCount % 30 == 1) {
