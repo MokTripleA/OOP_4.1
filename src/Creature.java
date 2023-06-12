@@ -25,11 +25,11 @@ public abstract class Creature {
      */
     float speed;
     /**
-     * Beschreibt die Größe in x- und y-Richtung
+     * Beschreibt die Groeße in x- und y-Richtung
      */
     float size;
     /**
-     * Sagt aus, ob das Wesen noch am Leben ist und beispielsweise Methoden ausführen kann
+     * Sagt aus, ob das Wesen noch am Leben ist und beispielsweise Methoden ausfuehren kann
      */
     boolean alive;
     /**
@@ -45,7 +45,7 @@ public abstract class Creature {
      */
     int points;
     /**
-     * Legt die Range fest, mit der der Hero angreifen kann, für Minion und Boss hat diese Variable nichts auszusagen
+     * Legt die Range fest, mit der der Hero angreifen kann, fuer Minion und Boss hat diese Variable nichts auszusagen
      */
     int range;
 

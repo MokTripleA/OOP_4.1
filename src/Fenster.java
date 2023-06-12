@@ -1,21 +1,24 @@
 import processing.core.PApplet;
 
+/**
+ * Fenster-Klasse um Processing Funktionen auszufuehren
+ */
 public class Fenster extends PApplet {
 
     /**
-     * enemies setzt die Länge des Minion-Arrays fest
+     * enemies setzt die Laenge des Minion-Arrays fest
      */
     int enemies = 5;
     /**
-     * enemyHealth setzt den Startwert für health der Minions
+     * enemyHealth setzt den Startwert fuer health der Minions
      */
     int enemyHealth = 20;
     /**
-     * enemyAttack setzt den Startwert für attack der Minions
+     * enemyAttack setzt den Startwert fuer attack der Minions
      */
     int enemyAttack = 20;
     /**
-     * enemySpeed setzt den Startwert für speed der Minions
+     * enemySpeed setzt den Startwert fuer speed der Minions
      */
     float enemySpeed = 1;
     /**
@@ -23,7 +26,7 @@ public class Fenster extends PApplet {
      */
     boolean anyEnemyAlive = true;
     /**
-     * runOnce wird genutzt, um das Upgrade-Menü aufzurufen
+     * runOnce wird genutzt, um das Upgrade-Menue aufzurufen
      */
     boolean runOnce = false;
 
@@ -37,8 +40,8 @@ public class Fenster extends PApplet {
     Levelup speed = new Speed(this, new upgradeSpeed(this));
 
     /**
-     * Festlegen der Länge und Breite des draw-Fensters
-     * Minion-Array mit Werten füllen
+     * Festlegen der Laenge und Breite des draw-Fensters
+     * Minion-Array mit Werten fuellen
      */
     @Override
     public void settings() {
@@ -49,7 +52,7 @@ public class Fenster extends PApplet {
     }
 
     /**
-     * Draw-Methode wird wiederholt mit frameRate = 60/s ausgeführt
+     * Draw-Methode wird wiederholt mit frameRate = 60/s ausgefuehrt
      */
     @Override
     public void draw() {
@@ -81,7 +84,7 @@ public class Fenster extends PApplet {
         }
 
 /**
- * Überprüfen, ob irgendein Gegner[x] noch alive ist
+ * Ueberpruefen, ob irgendein Gegner[x] noch alive ist
  * Falls nicht, ist anyEnemyAlive = false und start.nextWave = true
  */
         for (int y = 0; y < enemies; y++) {
@@ -105,7 +108,7 @@ public class Fenster extends PApplet {
         if (start.nextWave) {
 
             /**
-             * Upgrades werden neu "ausgewürfelt" solange man noch vor Welle fünf ist
+             * Upgrades werden neu "ausgewuerfelt" solange man noch vor Welle fuenf ist
              */
             if (runOnce && held.wave < 5) {
                 life = new Life(this, new upgradeHealth(this));
@@ -129,14 +132,14 @@ public class Fenster extends PApplet {
                     held.reset();
 
                     /**
-                     * Nach jeder Welle werden Werte für health, attack & speed erhöht
+                     * Nach jeder Welle werden Werte fuer health, attack & speed erhoeht
                      */
                     enemyHealth += 20;
                     enemyAttack += 10;
                     enemySpeed += 0.2;
 
                     /**
-                     * Resetten von Gegner[x] bzw. Gegner[z] mit neuen Werten für health, attack & speed bis Welle fünf
+                     * Resetten von Gegner[x] bzw. Gegner[z] mit neuen Werten fuer health, attack & speed bis Welle fuenf
                      */
                     if (held.wave < 5) {
                         for (int z = 0; z < enemies; z++) {
@@ -144,13 +147,13 @@ public class Fenster extends PApplet {
                         }
 
                         /**
-                         * Boss einführen, falls Welle fünf ist
+                         * Boss einfuehren, falls Welle fuenf ist
                          */
                     } else if (held.wave == 5) {
                         dickerGegner.alive = true;
                     }
                     /**
-                     * Upgrades neu auswürfeln nach jeder Welle
+                     * Upgrades neu auswuerfeln nach jeder Welle
                      */
                     start.nextWave = false;
                     runOnce = true;
