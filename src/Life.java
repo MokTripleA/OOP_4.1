@@ -3,6 +3,9 @@ import processing.core.PImage;
 
 import java.lang.Math;
 
+/**
+ * Life-Klasse zum Dekorieren der upgradeHealth-Klasse
+ */
 public class Life extends Items {
 
 
@@ -12,9 +15,21 @@ public class Life extends Items {
         levelup = iLevelup;
     }
 
+    /**
+     * Rarity um einen Zufallsmechanismus einzufuehren
+     */
     double rarity = Math.random() * 10;
+    /**
+     * Ein kleines Herz-Icon zum Darstellen des Upgrades
+     */
     PImage life;
 
+    /**
+     * Methode zum Darstellen der Rarität des Upgrades, je nach Rarity wird ein bestimmter Rahmen eingefuegt
+     *
+     * @param hero
+     * @param start
+     */
     @Override
     public void render(Hero hero, Start start) {
         window.stroke(255);

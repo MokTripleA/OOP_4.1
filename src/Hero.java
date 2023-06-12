@@ -1,19 +1,48 @@
 import processing.core.PApplet;
 import processing.core.PConstants;
 
+/**
+ * Hero-Klasse als Child von Creature
+ */
 public final class Hero extends Creature {
+    /**
+     * Indikator fuer Kills, fuer jeden gemachten Kill steigt heroKills um 1
+     */
     int heroKills = 0;
+    /**
+     * Sagt aus in welcher Welle man sich aktuell befindet, steigt nach jedem nextWave um 1
+     */
     int wave = 1;
+    /**
+     * Indikator fuer die Stamina, ist diese zu niedrig, lässt sich .fight() fuer Hero nicht mehr ausfuehren
+     */
     float stamina = 10;
+    /**
+     * Legt die Groeße der Ultimate fest, nach .ultimate() waechst diese, bis sie die Window-Border beruehrt
+     */
     float diameter = 0;
+    /**
+     * Ist ultimate = true, dann laesst sich die .ultimate() nutzen
+     */
     boolean ultimate = false;
+    /**
+     * Ist gameOver = true, dann wechselt man zu dem Game-Over Screen
+     */
     boolean gameOver = false;
+    /**
+     * Ist circle = true, dann waechst die Ultimate, bis sie die Window-Border beruehrt
+     */
     boolean circle = false;
 
     Hero(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iSpeed, float iSize, boolean iAlive, int iAttack, boolean iAttacking, int iPoints, int iRange) {
         super(iWindow, inputPositionX, inputPositionY, iHealth, iSpeed, iSize, iAlive, iAttack, iAttacking, iPoints, iRange);
     }
 
+    /**
+     * Methode zum Malen des Wesens
+     *
+     * @param enemy
+     */
     public void render(Creature enemy) {
         if (alive) {
             window.fill(0);
@@ -27,6 +56,13 @@ public final class Hero extends Creature {
         }
     }
 
+    /**
+     * Methode, um das Wesen zu bewegen
+     *
+     * @param x
+     * @param y
+     * @param hero
+     */
     @Override
     public void walk(float x, float y, Hero hero) {
         if (alive && hero.alive) {
@@ -49,6 +85,11 @@ public final class Hero extends Creature {
         }
     }
 
+    /**
+     * Methode, damit das Wesen kämpfen kann
+     *
+     * @param enemy
+     */
     public void fight(Creature enemy) {
         if (alive) {
             if (window.mousePressed) {
@@ -133,6 +174,11 @@ public final class Hero extends Creature {
         }
     }
 
+    /**
+     * Methode zum Darstellen der Healthbar
+     *
+     * @param enemy
+     */
     public void healthbar(Creature enemy) {
         if (alive) {
             if (health <= 0) {
@@ -152,6 +198,9 @@ public final class Hero extends Creature {
         }
     }
 
+    /**
+     * Methode zum Darstellen und Zuenden der Ultimate
+     */
     public void ultimate(Creature enemy) {
         if (alive) {
             window.textAlign(PConstants.LEFT);
@@ -166,6 +215,9 @@ public final class Hero extends Creature {
             window.fill(0);
             window.text(heroKills + " / 10", 1060, 567);
             window.stroke(0);
+            /**
+             * Sobald der Spieler 10 oder mehr heroKills hat ist ultimate = true
+             */
             if (heroKills >= 10) {
                 heroKills = 10;
                 ultimate = true;
@@ -174,6 +226,9 @@ public final class Hero extends Creature {
             }
         } else {
         }
+        /**
+         * Ist ultimate = true, dann kann man mit dem x-Key einen circle an der x- und y-Pos des Helden wachsen lassen
+         */
         if (ultimate) {
             if (window.keyPressed && window.key == 'x') {
                 circle = true;
@@ -185,6 +240,9 @@ public final class Hero extends Creature {
             window.fill(0, 0, 255);
             window.ellipse(xPos + 18, yPos + 18, diameter, diameter);
             diameter += 5;
+            /**
+             * Beruehrt der Rand des Circles einen Gegner, so kriegt dieser Schaden in Höhe des hero.Attack * 5
+             */
             if (xPos + 18 - diameter / 2 <= 0 || xPos + 18 + diameter / 2 >= 860 || yPos + 18 - diameter / 2 <= 0 || yPos + 18 + diameter / 2 >= 720) {
                 circle = false;
             }
@@ -197,6 +255,9 @@ public final class Hero extends Creature {
         }
     }
 
+    /**
+     * Methode zum Darstellen der Stamina
+     */
     public void stamina() {
         if (alive) {
             window.textAlign(PConstants.LEFT);
@@ -226,6 +287,9 @@ public final class Hero extends Creature {
         }
     }
 
+    /**
+     * Methode zum Darstellen der Punkte des Spielers
+     */
     public void points() {
         if (alive) {
             window.textAlign(PConstants.LEFT);
@@ -238,6 +302,9 @@ public final class Hero extends Creature {
         }
     }
 
+    /**
+     * Methode zum Resetten des Helden, dabei bleibt angriff, health und speed gleich, nur die Position und der alive-Status verändert sich
+     */
     public void reset() {
         alive = true;
         xPos = 750;

@@ -2,12 +2,27 @@ import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
 
+/**
+ * Start-Klasse fuer alle Screens außer des Spiel-Screens
+ */
 public class Start {
 
     PApplet window;
+    /**
+     * Falls true, dann wird der Start-Screen angezeigt
+     */
     boolean starting;
+    /**
+     * Falls true, dann wird der Nächste-Welle-Screen angezeigt
+     */
     boolean nextWave;
+    /**
+     * Falls true, dann wird der Win-Screen angezeigt
+     */
     boolean win;
+    /**
+     * Falls true, dann wird der Rules-Screen angezeigt
+     */
     boolean rules = false;
 
     Start(PApplet iWindow, boolean iStarting, boolean iNextWave, boolean iWin) {
@@ -17,6 +32,11 @@ public class Start {
         win = iWin;
     }
 
+    /**
+     * Methode zum Darstellen des Start-Screens
+     *
+     * @param creature
+     */
     public void starting(Creature creature) {
         if (starting && !rules) {
             creature.alive = false;
@@ -57,6 +77,11 @@ public class Start {
         }
     }
 
+    /**
+     * Methode zum Darstellen des Ending-Screens
+     *
+     * @param hero
+     */
     public void ending(Hero hero) {
         if (hero.gameOver && !nextWave) {
             hero.alive = false;
@@ -77,6 +102,12 @@ public class Start {
         }
     }
 
+    /**
+     * Methode zum Darstellen des Nächste-Welle-Screens
+     *
+     * @param hero
+     * @param enemy
+     */
     public void nextWave(Hero hero, Enemy enemy) {
         if (nextWave && !hero.gameOver && hero.wave <= 4) {
             hero.alive = false;
@@ -95,6 +126,12 @@ public class Start {
         }
     }
 
+    /**
+     * Methode zum Darstellen des Win-Screens
+     *
+     * @param hero
+     * @param enemy
+     */
     public void win(Hero hero, Enemy enemy) {
         if (hero.wave > 5) {
             win = true;
@@ -116,6 +153,9 @@ public class Start {
         }
     }
 
+    /**
+     * Methode zum Darstellen der Regeln
+     */
     public void rules() {
         PImage img;
         img = window.loadImage("Rules.png");

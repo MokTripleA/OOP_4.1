@@ -1,5 +1,8 @@
 import processing.core.PApplet;
 
+/**
+ * Level-Klasse zum Darstellen der "Spiel-Ebene"
+ */
 public class Level extends PApplet {
 
     PApplet window;
@@ -12,6 +15,10 @@ public class Level extends PApplet {
         height = iHeight;
     }
 
+    /**
+     * Methode zum Generieren der Spiel-Ebene
+     * @param hero
+     */
     public void generate(Creature hero) {
         if (hero.alive) {
             window.textSize(15);

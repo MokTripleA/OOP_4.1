@@ -1,6 +1,9 @@
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+ * Strength-Klasse zum Dekorieren der upgradeAttack-Klasse
+ */
 public class Strength extends Items {
 
     public Strength(PApplet iWindow, Levelup iLevelup) {
@@ -9,9 +12,21 @@ public class Strength extends Items {
         levelup = iLevelup;
     }
 
+    /**
+     * Rarity um einen Zufallsmechanismus einzufuehren
+     */
     double rarity = Math.random() * 10;
+    /**
+     * Ein kleines Schwert-Icon zum Darstellen des Upgrades
+     */
     PImage strength;
 
+    /**
+     * Methode zum Darstellen der Rarität des Upgrades, je nach Rarity wird ein bestimmter Rahmen eingefuegt
+     *
+     * @param hero
+     * @param start
+     */
     @Override
     public void render(Hero hero, Start start) {
         window.stroke(255);

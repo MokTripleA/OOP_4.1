@@ -1,6 +1,9 @@
 import processing.core.PApplet;
 import processing.core.PConstants;
 
+/**
+ * Enemy-Klasse um jegliche Form von Gegner darzustellen
+ */
 public class Enemy extends Creature {
     {
         if (window.frameCount % 60 == 1) {
@@ -12,6 +15,10 @@ public class Enemy extends Creature {
         super(iWindow, inputPositionX, inputPositionY, iHealth, iSpeed, iSize, iAlive, iAttack, iAttacking, iPoints, iRange);
     }
 
+    /**
+     * Methode zum Darstellen des Wesens
+     * @param hero
+     */
     @Override
     public void render(Creature hero) {
         if (health <= 0) {
@@ -30,6 +37,12 @@ public class Enemy extends Creature {
         }
     }
 
+    /**
+     * Methode, damit die Gegner den Helden "verfolgen" muessen
+     * @param x
+     * @param y
+     * @param hero
+     */
     public void walk(float x, float y, Hero hero) {
         if (alive && hero.alive) {
             if (xPos + size / 2 != x + 18 && yPos + size / 2 != y + 18) {
@@ -50,6 +63,10 @@ public class Enemy extends Creature {
         }
     }
 
+    /**
+     * Methode, damit die Gegner dem Helden jedesmal Schaden zufuegen, sobald sie diesen beruehren
+     * @param hero
+     */
     public void fight(Creature hero) {
         if (alive && !attacking) {
             if (xPos < hero.xPos + hero.size &&

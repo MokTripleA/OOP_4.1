@@ -1,6 +1,9 @@
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+ * Speed-Klasse zum Dekorieren der upgradeSpeed-Klasse
+ */
 public class Speed extends Items {
 
     public Speed(PApplet iWindow, Levelup iLevelup) {
@@ -9,9 +12,21 @@ public class Speed extends Items {
         levelup = iLevelup;
     }
 
+    /**
+     * Rarity um einen Zufallsmechanismus einzufuehren
+     */
     double rarity = Math.random() * 10;
+    /**
+     * Ein kleines Schuh-Icon zum Darstellen des Upgrades
+     */
     PImage speed;
 
+    /**
+     * Methode zum Darstellen der Rarität des Upgrades, je nach Rarity wird ein bestimmter Rahmen eingefuegt
+     *
+     * @param hero
+     * @param start
+     */
     @Override
     public void render(Hero hero, Start start) {
         window.stroke(255);

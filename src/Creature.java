@@ -1,7 +1,7 @@
 import processing.core.PApplet;
 
 /**
- * Creature-Class als Parent für jedes Wesen im Spiel
+ * Creature-Klasse als Parent für jedes Wesen im Spiel
  */
 public abstract class Creature {
     /**
