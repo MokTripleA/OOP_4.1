@@ -52,7 +52,10 @@ public class Enemy extends Creature {
 
     public void fight(Creature hero) {
         if (alive && !attacking) {
-            if (0 == 0
+            if (xPos < hero.xPos + hero.size &&
+                    xPos + size > hero.xPos &&
+                    yPos < hero.yPos + hero.size &&
+                    yPos + size > hero.yPos
             ) {
                 hero.health = hero.health - attack;
                 hero.points -= 50;
