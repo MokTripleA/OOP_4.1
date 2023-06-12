@@ -30,8 +30,8 @@ public class Enemy extends Creature {
         }
     }
 
-    public void walk(float x, float y) {
-        if (alive) {
+    public void walk(float x, float y, Hero hero) {
+        if (alive && hero.alive) {
             if (xPos + size / 2 != x + 18 && yPos + size / 2 != y + 18) {
                 if (xPos + size / 2 < x + 18) {
                     xPos += speed;

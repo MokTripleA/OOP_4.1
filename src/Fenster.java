@@ -2,11 +2,29 @@ import processing.core.PApplet;
 
 public class Fenster extends PApplet {
 
+    /**
+     * enemies setzt die Länge des Minion-Arrays fest
+     */
     int enemies = 5;
+    /**
+     * enemyHealth setzt den Startwert für health der Minions
+     */
     int enemyHealth = 20;
+    /**
+     * enemyAttack setzt den Startwert für attack der Minions
+     */
     int enemyAttack = 20;
+    /**
+     * enemySpeed setzt den Startwert für speed der Minions
+     */
     float enemySpeed = 1;
+    /**
+     * anyEnemyAlive sagt aus, ob Gegner noch leben, oder nicht
+     */
     boolean anyEnemyAlive = true;
+    /**
+     * runOnce wird genutzt, um das Upgrade-Menü aufzurufen
+     */
     boolean runOnce = false;
 
     Hero held = new Hero(this, 750, 320, 100, 1, 36, true, 20, false, 0, 36);
@@ -18,6 +36,10 @@ public class Fenster extends PApplet {
     Levelup strength = new Strength(this, new upgradeAttack(this));
     Levelup speed = new Speed(this, new upgradeSpeed(this));
 
+    /**
+     * Festlegen der Länge und Breite des draw-Fensters
+     * Minion-Array mit Werten füllen
+     */
     @Override
     public void settings() {
         for (int x = 0; x < gegner.length; x++) {
@@ -26,18 +48,25 @@ public class Fenster extends PApplet {
         size(1280, 720);
     }
 
+    /**
+     * Draw-Methode wird wiederholt mit frameRate = 60/s ausgeführt
+     */
     @Override
     public void draw() {
         level.generate(held);
         start.starting(held);
         start.ending(held);
-        held.walk(0, 0);
+        held.walk(0, 0, held);
         held.fight(dickerGegner);
         held.stamina();
         held.points();
         dickerGegner.render(held);
         dickerGegner.fight(held);
-        dickerGegner.walk(held.xPos, held.yPos);
+        dickerGegner.walk(held.xPos, held.yPos, held);
+
+        /**
+         * for-Schleife um Gegner[x] anzusprechen
+         */
         for (int x = 0; x < gegner.length; x++) {
             start.starting(held);
             start.nextWave(held, gegner[x]);
@@ -48,12 +77,13 @@ public class Fenster extends PApplet {
             held.fight(gegner[x]);
             gegner[x].render(held);
             gegner[x].fight(held);
-            if (held.alive) {
-                gegner[x].walk(held.xPos, held.yPos);
-            }
+            gegner[x].walk(held.xPos, held.yPos, held);
         }
 
-
+/**
+ * Überprüfen, ob irgendein Gegner[x] noch alive ist
+ * Falls nicht, ist anyEnemyAlive = false und start.nextWave = true
+ */
         for (int y = 0; y < enemies; y++) {
             if (gegner[y].alive) {
                 anyEnemyAlive = true;
@@ -62,14 +92,21 @@ public class Fenster extends PApplet {
                 anyEnemyAlive = false;
             }
         }
+
+        /**
+         * Ein wenig Delay einbauen, damit man nicht direkt auf die Upgrades klicken kann
+         */
         if (!anyEnemyAlive && !start.win && !dickerGegner.alive) {
             if (frameCount % 60 == 1) {
                 start.nextWave = true;
             }
         }
 
-
         if (start.nextWave) {
+
+            /**
+             * Upgrades werden neu "ausgewürfelt" solange man noch vor Welle fünf ist
+             */
             if (runOnce && held.wave < 5) {
                 life = new Life(this, new upgradeHealth(this));
                 speed = new Speed(this, new upgradeSpeed(this));
@@ -79,6 +116,10 @@ public class Fenster extends PApplet {
             life.render(held, start);
             speed.render(held, start);
             strength.render(held, start);
+
+            /**
+             * Falls der Mauszeiger im Bereich der Upgrades ist
+             */
             if (mouseX >= 182 && mouseX <= 182 + 182 && mouseY >= height / 2 && mouseY <= height / 2 + 182 ||
                     mouseX >= 546 && mouseX <= 546 + 182 && mouseY >= height / 2 && mouseY <= height / 2 + 182 ||
                     mouseX >= 910 && mouseX <= 910 + 182 && mouseY >= height / 2 && mouseY <= height / 2 + 182) {
@@ -86,25 +127,36 @@ public class Fenster extends PApplet {
                     held.wave += 1;
                     held.points += 500;
                     held.reset();
+
+                    /**
+                     * Nach jeder Welle werden Werte für health, attack & speed erhöht
+                     */
                     enemyHealth += 20;
                     enemyAttack += 10;
                     enemySpeed += 0.2;
-                    for (int z = 0; z < enemies; z++) {
-                        gegner[z].alive = false;
-                    }
+
+                    /**
+                     * Resetten von Gegner[x] bzw. Gegner[z] mit neuen Werten für health, attack & speed bis Welle fünf
+                     */
                     if (held.wave < 5) {
                         for (int z = 0; z < enemies; z++) {
                             gegner[z] = new Minion(this, random(0, 500), random(0, 720), enemyHealth, enemySpeed, 32, true, enemyAttack, false, 0, 0);
                         }
+
+                        /**
+                         * Boss einführen, falls Welle fünf ist
+                         */
                     } else if (held.wave == 5) {
                         dickerGegner.alive = true;
                     }
+                    /**
+                     * Upgrades neu auswürfeln nach jeder Welle
+                     */
                     start.nextWave = false;
                     runOnce = true;
                 }
             }
         }
-        System.out.println(held.wave);
     }
 //Draw ends here
 }

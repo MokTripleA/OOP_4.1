@@ -3,7 +3,7 @@ import processing.core.PConstants;
 
 public final class Hero extends Creature {
     int heroKills = 0;
-    int wave = 4;
+    int wave = 1;
     float stamina = 10;
     float diameter = 0;
     boolean ultimate = false;
@@ -28,8 +28,8 @@ public final class Hero extends Creature {
     }
 
     @Override
-    public void walk(float x, float y) {
-        if (alive) {
+    public void walk(float x, float y, Hero hero) {
+        if (alive && hero.alive) {
             if (xPos > 0 && xPos < 824 && yPos > 0 && yPos < 684) {
                 if (window.keyPressed) {
                     if (window.keyCode == 37 || window.key == 'a') {
