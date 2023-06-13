@@ -8,28 +8,26 @@ import processing.core.PImage;
 public class Start {
 
     PApplet window;
-    /**
-     * Falls true, dann wird der Start-Screen angezeigt
-     */
     boolean starting;
-    /**
-     * Falls true, dann wird der Nächste-Welle-Screen angezeigt
-     */
     boolean nextWave;
-    /**
-     * Falls true, dann wird der Win-Screen angezeigt
-     */
     boolean win;
-    /**
-     * Falls true, dann wird der Rules-Screen angezeigt
-     */
-    boolean rules = false;
+    boolean rules;
 
-    Start(PApplet iWindow, boolean iStarting, boolean iNextWave, boolean iWin) {
+    /**
+     * Konstruktor zum Erschaffen der verschiedenen Screens
+     *
+     * @param iWindow   Legt fest, auf welches Draw-Fenster wir zugreifen möchten
+     * @param iStarting Falls true, dann wird der Start-Screen angezeigt
+     * @param iNextWave Falls true, dann wird der Nächste-Welle-Screen angezeigt
+     * @param iWin      Falls true, dann wird der Win-Screen angezeigt
+     * @param iRules    Falls true, dann wird der Rules-Screen angezeigt
+     */
+    Start(PApplet iWindow, boolean iStarting, boolean iNextWave, boolean iWin, boolean iRules) {
         window = iWindow;
         starting = iStarting;
         nextWave = iNextWave;
         win = iWin;
+        rules = iRules;
     }
 
     /**
@@ -54,6 +52,9 @@ public class Start {
             window.fill(255);
             window.text("START", window.width / 2, window.height / 2 - 40);
             window.text("RULES", window.width / 2, window.height / 2 + 110);
+            /**
+             * Cursor im Bereich des Start-Buttons
+             */
             if (window.mouseX >= window.width / 2 - 100 && window.mouseX <= window.width / 2 + 100 && window.mouseY >= window.height / 2 - 100 && window.mouseY <= window.height / 2) {
                 window.fill(255);
                 window.rect(window.width / 2 - 100, window.height / 2 - 100, 200, 100);
@@ -63,6 +64,9 @@ public class Start {
                     creature.alive = true;
                     starting = false;
                 }
+                /**
+                 * Cursor im Bereich des Rules-Buttons
+                 */
             } else if (window.mouseX >= window.width / 2 - 100 && window.mouseX <= window.width / 2 + 100 && window.mouseY >= window.height / 2 + 50 && window.mouseY <= window.height / 2 + 150) {
                 window.fill(255);
                 window.rect(window.width / 2 - 100, window.height / 2 + 50, 200, 100);

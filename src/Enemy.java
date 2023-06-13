@@ -5,18 +5,14 @@ import processing.core.PConstants;
  * Enemy-Klasse um jegliche Form von Gegner darzustellen
  */
 public class Enemy extends Creature {
-    {
-        if (window.frameCount % 60 == 1) {
-            attacking = false;
-        }
-    }
 
-    Enemy(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iSpeed, float iSize, boolean iAlive, int iAttack, boolean iAttacking, int iPoints, int iRange) {
-        super(iWindow, inputPositionX, inputPositionY, iHealth, iSpeed, iSize, iAlive, iAttack, iAttacking, iPoints, iRange);
+    Enemy(PApplet iWindow, float inputPositionX, float inputPositionY, float iHealth, float iSpeed, float iSize, boolean iAlive, int iAttack, boolean iAttacking, boolean iProtection, int iPoints, int iRange) {
+        super(iWindow, inputPositionX, inputPositionY, iHealth, iSpeed, iSize, iAlive, iAttack, iAttacking, iProtection, iPoints, iRange);
     }
 
     /**
      * Methode zum Darstellen des Wesens
+     *
      * @param hero
      */
     @Override
@@ -25,20 +21,23 @@ public class Enemy extends Creature {
             alive = false;
         }
         if (alive && hero.alive) {
-            window.noStroke();
+            window.stroke(0);
+            window.strokeWeight(3);
             window.fill(255, 0, 0);
             window.rectMode(PConstants.CORNER);
             window.rect(xPos, yPos, size, size);
             window.textAlign(PConstants.CENTER);
             window.textSize(18);
             window.fill(0);
-            window.text((int) health, xPos + 18, yPos + 18);
+            window.text((int) health, xPos + size / 2, yPos + size / 2);
+            window.noStroke();
         } else {
         }
     }
 
     /**
      * Methode, damit die Gegner den Helden "verfolgen" muessen
+     *
      * @param x
      * @param y
      * @param hero
@@ -65,10 +64,11 @@ public class Enemy extends Creature {
 
     /**
      * Methode, damit die Gegner dem Helden jedesmal Schaden zufuegen, sobald sie diesen beruehren
+     *
      * @param hero
      */
     public void fight(Creature hero) {
-        if (alive && !attacking) {
+        if (alive && !protection) {
             if (xPos < hero.xPos + hero.size &&
                     xPos + size > hero.xPos &&
                     yPos < hero.yPos + hero.size &&
@@ -77,9 +77,14 @@ public class Enemy extends Creature {
                 hero.health = hero.health - attack;
                 hero.points -= 50;
                 attacking = true;
-            } else {
-                attacking = false;
+                protection = true;
+
             }
+        } else {
+            if (protection && window.frameCount % 50 == 1) {
+                protection = false;
+            }
+            attacking = false;
         }
     }
 }
