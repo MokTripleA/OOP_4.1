@@ -23,10 +23,17 @@ public final class Boss extends Enemy {
         }
     }
 
+    /**
+     * Methode zum Erstellen eines mehrfachen Bosskampfes
+     *
+     * @param hero Bezieht sich auf ein Objekt der Hero-Klasse
+     */
     public void resurrection(Hero hero) {
         if (!alive && hero.wave == 5 && points < 3) {
+            xPos = 100;
+            yPos = 320;
             points += 1;
-            size *= 2;
+            size *= 1.3;
             health += 2000 * points;
             speed *= 1.3;
             alive = true;

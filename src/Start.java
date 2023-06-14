@@ -137,7 +137,7 @@ public class Start {
      * @param enemy Bezieht sich auf ein Objekt der Enemy-Klasse
      */
     public void win(Hero hero, Enemy enemy) {
-        if (hero.wave == 5 && !enemy.alive) {
+        if (enemy.points >= 3 && !enemy.alive) {
             nextWave = false;
             hero.gameOver = false;
             hero.alive = false;

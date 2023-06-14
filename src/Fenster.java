@@ -12,7 +12,7 @@ public class Fenster extends PApplet {
     boolean anyEnemyAlive = true;
     boolean runOnce = false;
 
-    Hero held = new Hero(this, 750, 320, 100, 1, 36, true, 20, false, false, 0, 36);
+    Hero held = new Hero(this, 750, 320, 100, 1, 36, true, 300, false, false, 0, 36);
     Minion[] gegner = new Minion[enemies];
     Boss dickerGegner = new Boss(this, 200, 320, 1000, 0.5f, 64, false, 80, false, false, 0, 0);
     Level level = new Level(this, 860, 720);
@@ -41,6 +41,7 @@ public class Fenster extends PApplet {
         level.generate(held);
         start.starting(held);
         start.ending(held);
+        start.win(held, dickerGegner);
         held.walk(0, 0, held);
         held.fight(dickerGegner);
         held.stamina();
@@ -60,12 +61,6 @@ public class Fenster extends PApplet {
             gegner[x].render(held);
             gegner[x].fight(held);
             gegner[x].walk(held.xPos, held.yPos, held);
-        }
-
-        //Anfang - Boss after Res'
-
-        if (dickerGegner.points > 3) {
-            start.win(held, dickerGegner);
         }
 
         //Anfang - Check if any enemy alive:
@@ -128,6 +123,7 @@ public class Fenster extends PApplet {
                 }
             }
         }
+        System.out.println("Alive: " + dickerGegner.alive + "       Wave: " + held.wave);
     }
 //Draw ends here
 }

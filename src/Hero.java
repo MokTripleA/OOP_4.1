@@ -36,8 +36,8 @@ public final class Hero extends Creature {
             window.textSize(20);
             window.textAlign(PConstants.LEFT);
             window.text("Health: " + health, 880, 30); //Show Stat-Health
-            window.text("Attack: " + attack, 880, 50); //Show Stat-Attack
-            window.text("Speed: " + speed, 880, 70); //Show Stat-Speed
+            window.text("Attack: " + attack, 880, 60); //Show Stat-Attack
+            window.text("Speed: " + speed, 880, 90); //Show Stat-Speed
         }
     }
 
