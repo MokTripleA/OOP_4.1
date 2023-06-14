@@ -42,24 +42,24 @@ public class Start {
             window.textSize(30);
             window.textAlign(PConstants.CENTER);
             window.fill(100);
-            window.text("Blackbox Adventures", window.width / 2 + 1, 120 + 1);
+            window.text("Blackbox Adventures", (float) window.width / 2 + 1, 120 + 1);
             window.fill(255);
-            window.text("Blackbox Adventures", window.width / 2, 120);
+            window.text("Blackbox Adventures", (float) window.width / 2, 120);
             window.stroke(255);
             window.fill(0);
-            window.rect(window.width / 2 - 100, window.height / 2 - 100, 200, 100);
-            window.rect(window.width / 2 - 100, window.height / 2 + 50, 200, 100);
+            window.rect((float) window.width / 2 - 100, (float) window.height / 2 - 100, 200, 100);
+            window.rect((float) window.width / 2 - 100, (float) window.height / 2 + 50, 200, 100);
             window.fill(255);
-            window.text("START", window.width / 2, window.height / 2 - 40);
-            window.text("RULES", window.width / 2, window.height / 2 + 110);
+            window.text("START", (float) window.width / 2, (float) window.height / 2 - 40);
+            window.text("RULES", (float) window.width / 2, (float) window.height / 2 + 110);
             /**
              * Cursor im Bereich des Start-Buttons
              */
             if (window.mouseX >= window.width / 2 - 100 && window.mouseX <= window.width / 2 + 100 && window.mouseY >= window.height / 2 - 100 && window.mouseY <= window.height / 2) {
                 window.fill(255);
-                window.rect(window.width / 2 - 100, window.height / 2 - 100, 200, 100);
+                window.rect((float) window.width / 2 - 100, (float) window.height / 2 - 100, 200, 100);
                 window.fill(0);
-                window.text("START", window.width / 2, window.height / 2 - 40);
+                window.text("START", (float) window.width / 2, (float) window.height / 2 - 40);
                 if (window.mousePressed) {
                     creature.alive = true;
                     starting = false;
@@ -69,9 +69,9 @@ public class Start {
                  */
             } else if (window.mouseX >= window.width / 2 - 100 && window.mouseX <= window.width / 2 + 100 && window.mouseY >= window.height / 2 + 50 && window.mouseY <= window.height / 2 + 150) {
                 window.fill(255);
-                window.rect(window.width / 2 - 100, window.height / 2 + 50, 200, 100);
+                window.rect((float) window.width / 2 - 100, (float) window.height / 2 + 50, 200, 100);
                 window.fill(0);
-                window.text("RULES", window.width / 2, window.height / 2 + 110);
+                window.text("RULES", (float) window.width / 2, (float) window.height / 2 + 110);
                 if (window.mousePressed) {
                     rules = true;
                 }
@@ -93,11 +93,11 @@ public class Start {
             window.textSize(30);
             window.textAlign(PConstants.CENTER);
             window.fill(102, 0, 0);
-            window.text("GAME OVER", window.width / 2 + 1, 120 + 1);
-            window.text("Press ESCAPE to exit!", window.width / 2 + 1, window.height / 2 + 1);
+            window.text("GAME OVER", (float) window.width / 2 + 1, 120 + 1);
+            window.text("Press ESCAPE to exit!", (float) window.width / 2 + 1, (float) window.height / 2 + 1);
             window.fill(255, 0, 0);
-            window.text("GAME OVER", window.width / 2, 120);
-            window.text("Press ESCAPE to exit!", window.width / 2, window.height / 2);
+            window.text("GAME OVER", (float) window.width / 2, 120);
+            window.text("Press ESCAPE to exit!", (float) window.width / 2, (float) window.height / 2);
             window.textAlign(PConstants.LEFT);
             if (window.keyPressed && window.key == 32) {
                 starting = true;
@@ -109,7 +109,7 @@ public class Start {
     /**
      * Methode zum Darstellen des Nächste-Welle-Screens
      *
-     * @param hero Bezieht sich auf ein Objekt der Hero-Klasse
+     * @param hero  Bezieht sich auf ein Objekt der Hero-Klasse
      * @param enemy Bezieht sich auf ein Objekt der Enemy-Klasse
      */
     public void nextWave(Hero hero, Enemy enemy) {
@@ -120,11 +120,11 @@ public class Start {
             window.textSize(30);
             window.textAlign(PConstants.CENTER);
             window.fill(76, 135, 0);
-            window.text("WAVE COMPLETED", window.width / 2 + 1, 120 + 1);
-            window.text("CHOOSE your UPGRADE!", window.width / 2 + 1, 300 + 1);
+            window.text("WAVE COMPLETED", (float) window.width / 2 + 1, 120 + 1);
+            window.text("CHOOSE your UPGRADE!", (float) window.width / 2 + 1, 300 + 1);
             window.fill(128, 255, 0);
-            window.text("WAVE COMPLETED", window.width / 2, 120);
-            window.text("CHOOSE your UPGRADE!", window.width / 2, 300);
+            window.text("WAVE COMPLETED", (float) window.width / 2, 120);
+            window.text("CHOOSE your UPGRADE!", (float) window.width / 2, 300);
             window.textAlign(PConstants.LEFT);
             window.fill(0);
         }
@@ -133,12 +133,11 @@ public class Start {
     /**
      * Methode zum Darstellen des Win-Screens
      *
-     * @param hero Bezieht sich auf ein Objekt der Hero-Klasse
+     * @param hero  Bezieht sich auf ein Objekt der Hero-Klasse
      * @param enemy Bezieht sich auf ein Objekt der Enemy-Klasse
      */
     public void win(Hero hero, Enemy enemy) {
-        if (hero.wave > 5) {
-            win = true;
+        if (hero.wave == 5 && !enemy.alive) {
             nextWave = false;
             hero.gameOver = false;
             hero.alive = false;
@@ -147,11 +146,15 @@ public class Start {
             window.textSize(30);
             window.textAlign(PConstants.CENTER);
             window.fill(76, 135, 0);
-            window.text("YOU WON!", window.width / 2 + 1, 120 + 1);
-            window.text("Press ESCAPE to exit!", window.width / 2 + 1, 300 + 1);
+            window.text("YOU WON!", (float) window.width / 2 + 1, 120 + 1);
+            window.text("Press ESCAPE to exit!", (float) window.width / 2 + 1, 300 + 1);
             window.fill(128, 255, 0);
-            window.text("YOU WON!", window.width / 2, 120);
-            window.text("Press ESCAPE to exit!", window.width / 2, 300);
+            window.text("YOU WON!", (float) window.width / 2, 120);
+            window.text("Press ESCAPE to exit!", (float) window.width / 2, 300);
+            window.fill(150);
+            window.text("You have " + hero.points + " Points!", (float) window.width / 2 + 1, (float) window.height / 2 + 1);
+            window.fill(255);
+            window.text("You have " + hero.points + " Points!", (float) window.width / 2, (float) window.height / 2);
             window.textAlign(PConstants.LEFT);
             window.fill(0);
         }

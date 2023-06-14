@@ -7,6 +7,10 @@ public class upgradeAttack implements Levelup {
 
     PApplet window;
 
+    /**
+     * Konstruktor fuer die upgradeAttack-Klasse
+     * @param iWindow Legt fest, auf welches Draw-Fenster wir zugreifen moechten
+     */
     upgradeAttack(PApplet iWindow) {
         window = iWindow;
     }

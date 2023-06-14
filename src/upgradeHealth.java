@@ -7,6 +7,10 @@ public class upgradeHealth implements Levelup {
 
     PApplet window;
 
+    /**
+     * Konstruktor fuer die upgradeHealth-Klasse
+     * @param iWindow Legt fest, auf welches Draw-Fenster wir zugreifen moechten
+     */
     upgradeHealth(PApplet iWindow) {
         window = iWindow;
     }

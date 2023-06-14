@@ -21,6 +21,13 @@ public class Strength extends Items {
     double rarity = Math.random() * 10;
     PImage strength;
 
+    /**
+     * Methode zum Generieren der Dekoration für das Strength-Upgrade
+     *
+     * @param start Bezieht sich auf ein Objekt der Start-Klasse
+     * @param hero  Bezieht sich auf ein Objekt der Hero-Klasse
+     * @param enemy Bezieht sich auf ein Objekt der Enemy-Klasse
+     */
     @Override
     public void render(Start start, Hero hero, Enemy enemy) {
         window.stroke(255);

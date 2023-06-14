@@ -23,6 +23,13 @@ public class Life extends Items {
     double rarity = Math.random() * 100;
     PImage life;
 
+    /**
+     * Methode zum Generieren der Dekoration für das Health-Upgrade
+     *
+     * @param start Bezieht sich auf ein Objekt der Start-Klasse
+     * @param hero  Bezieht sich auf ein Objekt der Hero-Klasse
+     * @param enemy Bezieht sich auf ein Objekt der Enemy-Klasse
+     */
     @Override
     public void render(Start start, Hero hero, Enemy enemy) {
         window.stroke(255);

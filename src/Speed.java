@@ -6,6 +6,8 @@ import processing.core.PImage;
  */
 public class Speed extends Items {
 
+    double rarity = Math.random() * 10;
+    PImage speed;
     /**
      * Konstruktor fuer die Speed-Klasse
      *
@@ -18,11 +20,8 @@ public class Speed extends Items {
         levelup = iLevelup;
     }
 
-    double rarity = Math.random() * 10;
-    PImage speed;
-
     /**
-     * Methode zum Darstellen der Rarität des Upgrades, je nach Rarity wird ein bestimmter Rahmen eingefuegt
+     * Methode zum Generieren der Dekoration für das Speed-Upgrade
      *
      * @param start Bezieht sich auf ein Objekt der Start-Klasse
      * @param hero  Bezieht sich auf ein Objekt der Hero-Klasse

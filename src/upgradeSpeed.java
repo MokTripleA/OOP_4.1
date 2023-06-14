@@ -7,6 +7,11 @@ public class upgradeSpeed implements Levelup {
 
     PApplet window;
 
+    /**
+     * Konstruktor fuer die upgradeSpeed-Klasse
+     *
+     * @param iWindow
+     */
     upgradeSpeed(PApplet iWindow) {
         window = iWindow;
     }

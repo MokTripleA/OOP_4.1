@@ -9,6 +9,13 @@ public class Level extends PApplet {
     int width;
     int height;
 
+    /**
+     * Konstruktor fuer die Level-Klasse
+     *
+     * @param iWindow Legt fest, auf welches Draw-Fenster wir zugreifen moechten
+     * @param iWidth  Setzt die Weite des Level-Fensters fest
+     * @param iHeight Setzt die Hoehe des Level-Fensters fest
+     */
     Level(PApplet iWindow, int iWidth, int iHeight) {
         window = iWindow;
         width = iWidth;
@@ -17,6 +24,7 @@ public class Level extends PApplet {
 
     /**
      * Methode zum Generieren der Spiel-Ebene
+     *
      * @param hero Bezieht sich auf ein Objekt der Hero-Klasse
      */
     public void generate(Creature hero) {

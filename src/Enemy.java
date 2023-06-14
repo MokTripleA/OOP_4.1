@@ -75,7 +75,7 @@ public class Enemy extends Creature {
                     yPos + size > hero.yPos
             ) {
                 hero.health = hero.health - attack;
-                hero.points -= 50;
+                hero.points -= 250;
                 attacking = true;
                 protection = true;
 

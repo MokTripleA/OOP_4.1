@@ -1,5 +1,4 @@
 import processing.core.PApplet;
-import processing.core.PConstants;
 
 /**
  * Boss-Klasse als großer Endgegner
@@ -11,15 +10,26 @@ public final class Boss extends Enemy {
 
     /**
      * Methode zum Darstellen der Ultimate des Bosses
-     * @param hero Bezieht sich auf ein Objekt der Hero-Klasse
+     *
+     * @param hero  Bezieht sich auf ein Objekt der Hero-Klasse
      * @param enemy Bezieht sich auf ein Objekt der Enemy-Klasse
      */
     public void ultimate(Hero hero, Enemy enemy) {
-        if (window.frameCount % 500 == 0 && hero.wave == 5) {
+        if (window.frameCount % 250 == 0 && hero.wave == 5) {
             enemy.alive = true;
             enemy.speed = 1;
             enemy.health = 200;
             enemy.attack = 25;
+        }
+    }
+
+    public void resurrection(Hero hero) {
+        if (!alive && hero.wave == 5 && points < 3) {
+            points += 1;
+            size *= 2;
+            health += 2000 * points;
+            speed *= 1.3;
+            alive = true;
         }
     }
 }
