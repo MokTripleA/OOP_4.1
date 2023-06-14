@@ -17,7 +17,7 @@ public class Level extends PApplet {
 
     /**
      * Methode zum Generieren der Spiel-Ebene
-     * @param hero
+     * @param hero Bezieht sich auf ein Objekt der Hero-Klasse
      */
     public void generate(Creature hero) {
         if (hero.alive) {

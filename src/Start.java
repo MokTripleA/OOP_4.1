@@ -33,7 +33,7 @@ public class Start {
     /**
      * Methode zum Darstellen des Start-Screens
      *
-     * @param creature
+     * @param creature Bezieht sich auf ein Objekt der Creature-Klasse
      */
     public void starting(Creature creature) {
         if (starting && !rules) {
@@ -84,7 +84,7 @@ public class Start {
     /**
      * Methode zum Darstellen des Ending-Screens
      *
-     * @param hero
+     * @param hero Bezieht sich auf ein Objekt der Hero-Klasse
      */
     public void ending(Hero hero) {
         if (hero.gameOver && !nextWave) {
@@ -109,8 +109,8 @@ public class Start {
     /**
      * Methode zum Darstellen des Nächste-Welle-Screens
      *
-     * @param hero
-     * @param enemy
+     * @param hero Bezieht sich auf ein Objekt der Hero-Klasse
+     * @param enemy Bezieht sich auf ein Objekt der Enemy-Klasse
      */
     public void nextWave(Hero hero, Enemy enemy) {
         if (nextWave && !hero.gameOver && hero.wave <= 4) {
@@ -133,8 +133,8 @@ public class Start {
     /**
      * Methode zum Darstellen des Win-Screens
      *
-     * @param hero
-     * @param enemy
+     * @param hero Bezieht sich auf ein Objekt der Hero-Klasse
+     * @param enemy Bezieht sich auf ein Objekt der Enemy-Klasse
      */
     public void win(Hero hero, Enemy enemy) {
         if (hero.wave > 5) {

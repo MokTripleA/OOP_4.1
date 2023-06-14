@@ -108,9 +108,11 @@ public class Fenster extends PApplet {
                 strength = new Strength(this, new upgradeAttack(this));
                 runOnce = false;
             }
-            life.render(held, start);
-            speed.render(held, start);
-            strength.render(held, start);
+            for (int x = 0; x < gegner.length; x++) {
+                life.render(start, held, gegner[x]);
+                speed.render(start, held, gegner[x]);
+                strength.render(start, held, gegner[x]);
+            }
 
             /**
              * Falls der Mauszeiger im Bereich der Upgrades ist

@@ -12,13 +12,14 @@ public class upgradeSpeed implements Levelup {
     }
 
     /**
-     * Methode zum Darstellen des Gerüsts fuer das Attack-Upgrade
+     * Methode zum Darstellen des Gerüsts fuer das Speed-Upgrade
      *
-     * @param hero
-     * @param start
+     * @param start Bezieht sich auf ein Objekt der Start-Klasse
+     * @param hero  Bezieht sich auf ein Objekt der Hero-Klasse
+     * @param enemy Bezieht sich auf ein Objekt der Enemy-Klasse
      */
     @Override
-    public void render(Hero hero, Start start) {
-        window.rect(546, window.height / 2, 182, 182);
+    public void render(Start start, Hero hero, Enemy enemy) {
+        window.rect(546, (float) window.height / 2, 182, 182);
     }
 }

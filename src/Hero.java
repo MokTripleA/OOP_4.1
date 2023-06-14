@@ -13,14 +13,14 @@ public final class Hero extends Creature {
      * @param fixedBar Legt eine feste Laenge fuer die Healthbar fest
      * @param fixedHealth Kopiert den Healthwert am Anfang der Runde um einen "Original-Wert" für die percent-Berechnung zu haben
      * @param stamina Wert um festzulegen, ob der Held gerade schlagen kann, oder nicht
-     * @param diameter Wert für die Größe des Helden
-     * @param ultimate
-     * @param gameOver
-     * @param circle
+     * @param diameter Wert für die Groeße der Ultimate
+     * @param ultimate Sagt aus, ob man die Ultimate nutzen kann, oder nicht
+     * @param gameOver Sagt aus, ob der Held besiegt ist, oder nicht
+     * @param circle Sagt aus, ob der Kreis der Ultimate waechst oder nicht
      */
 
     int heroKills = 0;
-    int wave = 1;
+    int wave = 4;
     float percent;
     float fixedBar = 300;
     float fixedHealth;
@@ -37,7 +37,7 @@ public final class Hero extends Creature {
     /**
      * Methode zum Malen des Wesens
      *
-     * @param enemy
+     * @param enemy Bezieht sich auf einen bestimmten Gegner
      */
     public void render(Creature enemy) {
         if (alive) {
@@ -55,9 +55,9 @@ public final class Hero extends Creature {
     /**
      * Methode, um das Wesen zu bewegen
      *
-     * @param x
-     * @param y
-     * @param hero
+     * @param x Dieser Parameter hat hier keine Funktion
+     * @param y Dieser Parameter hat hier keine Funktion
+     * @param hero Wird genutzt um zu ueberpruefen, ob der Held noch am Leben ist oder nicht
      */
     @Override
     public void walk(float x, float y, Hero hero) {
@@ -84,7 +84,7 @@ public final class Hero extends Creature {
     /**
      * Methode, damit das Wesen kaempfen kann
      *
-     * @param enemy
+     * @param enemy Bezieht sich auf einen bestimmten Minion
      */
     public void fight(Creature enemy) {
         window.stroke(0);
@@ -188,7 +188,9 @@ public final class Hero extends Creature {
     /**
      * Methode zum Darstellen der Healthbar
      *
-     * @param start
+     * @param start Bezieht sich auf die Start-Klasse
+     * @param minion Bezieht sich auf einen bestimmten Minion
+     * @param boss Bezieht sich auf einen bestimmten Boss
      */
     public void healthbar(Start start, Enemy minion, Enemy boss) {
         if (start.nextWave || start.starting) {
@@ -220,6 +222,7 @@ public final class Hero extends Creature {
 
     /**
      * Methode zum Darstellen und Zuenden der Ultimate
+     * @param enemy Bezieht sich auf ein Objekt der Enemy-Klasse
      */
     public void ultimate(Creature enemy) {
         if (alive) {

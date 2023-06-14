@@ -5,15 +5,22 @@ import processing.core.PApplet;
  */
 public abstract class Items implements Levelup {
 
+    /**
+     * @param window Legt fest, auf welches Draw-Fenster wir zugreifen moechten
+     * @param levelup Bezieht sich auf das Interface Levelup
+     */
     PApplet window;
     protected Levelup levelup;
 
-
+    /**
+     * Konstruktor für die Items-Klasse
+     * @param levelup Bezieht sich auf das Interface Levelup
+     */
     public Items(Levelup levelup) {
         this.levelup = levelup;
     }
 
-    public void render(Hero hero, Start start) {
-        levelup.render(hero, start);
+    public void render(Start start, Hero hero, Enemy enemy) {
+        levelup.render(start, hero, enemy);
     }
 }

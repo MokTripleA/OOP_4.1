@@ -13,7 +13,7 @@ public class Enemy extends Creature {
     /**
      * Methode zum Darstellen des Wesens
      *
-     * @param hero
+     * @param hero Bezieht sich auf ein Objekt aus der Hero-Klasse
      */
     @Override
     public void render(Creature hero) {
@@ -38,9 +38,9 @@ public class Enemy extends Creature {
     /**
      * Methode, damit die Gegner den Helden "verfolgen" muessen
      *
-     * @param x
-     * @param y
-     * @param hero
+     * @param x x-Position die verfolgt werden soll
+     * @param y y-Position die verfolgt werden soll
+     * @param hero Bezieht sich auf ein Objekt der Hero-Klasse
      */
     public void walk(float x, float y, Hero hero) {
         if (alive && hero.alive) {
@@ -65,7 +65,7 @@ public class Enemy extends Creature {
     /**
      * Methode, damit die Gegner dem Helden jedesmal Schaden zufuegen, sobald sie diesen beruehren
      *
-     * @param hero
+     * @param hero Bezieht sich auf ein Objekt der Hero-Klasse
      */
     public void fight(Creature hero) {
         if (alive && !protection) {

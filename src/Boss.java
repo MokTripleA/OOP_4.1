@@ -9,6 +9,11 @@ public final class Boss extends Enemy {
         super(iWindow, inputPositionX, inputPositionY, iHealth, iSpeed, iSize, iAlive, iAttack, iAttacking, iProtection, iPoints, iRange);
     }
 
+    /**
+     * Methode zum Darstellen der Ultimate des Bosses
+     * @param hero Bezieht sich auf ein Objekt der Hero-Klasse
+     * @param enemy Bezieht sich auf ein Objekt der Enemy-Klasse
+     */
     public void ultimate(Hero hero, Enemy enemy) {
         if (window.frameCount % 500 == 0 && hero.wave == 5) {
             enemy.alive = true;
