@@ -123,7 +123,6 @@ public class Fenster extends PApplet {
                 }
             }
         }
-        System.out.println("Alive: " + dickerGegner.alive + "       Wave: " + held.wave);
     }
 //Draw ends here
 }

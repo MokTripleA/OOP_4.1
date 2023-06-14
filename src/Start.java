@@ -8,6 +8,7 @@ import processing.core.PImage;
 public class Start {
 
     PApplet window;
+    int page = 0;
     boolean starting;
     boolean nextWave;
     boolean win;
@@ -164,12 +165,49 @@ public class Start {
      * Methode zum Darstellen der Regeln
      */
     public void rules() {
-        PImage img;
-        img = window.loadImage("Rules.png");
-        window.image(img, 0, 0);
-
-        if (window.keyPressed && window.key == 32) {
-            rules = false;
+        PImage img1, img2;
+        img1 = window.loadImage("rulesUno.png");
+        img2 = window.loadImage("rulesDos.png");
+        if (rules) {
+            if (page == 0) {
+                window.strokeWeight(3);
+                window.image(img1, 0, 0);
+                window.fill(255);
+                window.rect((float) window.width / 2 - 200, 20, 400, 40);
+                window.fill(0);
+                window.text("Press HERE for next PAGE!", (float) window.width / 2, 50);
+                if (window.mouseX >= (float) window.width / 2 - 200 && window.mouseX <= window.width / 2 - 200 + 400 && window.mouseY >= 20 && window.mouseY <= 20 + 40) {
+                    window.fill(0);
+                    window.rect((float) window.width / 2 - 200, 20, 400, 40);
+                    window.fill(255);
+                    window.text("Press HERE for next PAGE!", (float) window.width / 2, 50);
+                    if (window.mousePressed) {
+                        page = 1;
+                    }
+                }
+            }
+            if (page == 1) {
+                window.strokeWeight(3);
+                window.image(img2, 0, 0);
+                window.fill(255);
+                window.rect((float) window.width / 2 - 200, 20, 400, 40);
+                window.fill(0);
+                window.text("Press HERE to exit RULES!", (float) window.width / 2, 50);
+                if (window.mouseX >= (float) window.width / 2 - 200 && window.mouseX <= window.width / 2 - 200 + 400 && window.mouseY >= 20 && window.mouseY <= 20 + 40) {
+                    window.fill(0);
+                    window.rect((float) window.width / 2 - 200, 20, 400, 40);
+                    window.fill(255);
+                    window.text("Press HERE to exit RULES!", (float) window.width / 2, 50);
+                    if (window.mousePressed) {
+                        page = 2;
+                    }
+                }
+            }
+            if (page == 2) {
+                page = 0;
+                rules = false;
+            }
         }
+        System.out.println(page);
     }
 }
