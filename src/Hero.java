@@ -1,8 +1,6 @@
 import processing.core.PApplet;
 import processing.core.PConstants;
 
-import static processing.core.PConstants.SHIFT;
-
 /**
  * Hero-Klasse als Child von Creature
  */
@@ -37,7 +35,8 @@ public final class Hero extends Creature {
             window.textAlign(PConstants.LEFT);
             window.text("Health: " + health, 880, 30); //Show Stat-Health
             window.text("Attack: " + attack, 880, 60); //Show Stat-Attack
-            window.text("Speed: " + speed, 880, 90); //Show Stat-Speed
+            window.text("Speed: " + Math.round((double) speed * 100) / 100, 880, 90); //Show Stat-Speed
+            System.out.println(speed);
         }
     }
 
@@ -54,13 +53,13 @@ public final class Hero extends Creature {
             if (xPos > 0 && xPos < 824 && yPos > 0 && yPos < 684) {
                 if (window.keyPressed) {
                     if (window.keyCode == 37 || window.key == 'a') {
-                        xPos -= 3.6 * speed;
+                        xPos -= speed / 10;
                     } else if (window.keyCode == 38 || window.key == 'w') {
-                        yPos -= 3.6 * speed;
+                        yPos -= speed / 10;
                     } else if (window.keyCode == 39 || window.key == 'd') {
-                        xPos += 3.6 * speed;
+                        xPos += speed / 10;
                     } else if (window.keyCode == 40 || window.key == 's') {
-                        yPos += 3.6 * speed;
+                        yPos += speed / 10;
                     } else {
                     }
                 }
@@ -183,6 +182,7 @@ public final class Hero extends Creature {
      */
     public void healthbar(Start start, Enemy minion, Enemy boss) {
         if (minion.attacking || boss.attacking || window.mousePressed && start.nextWave) {
+            System.out.println("Updated :" + percent);
             percent = health / fixedHealth;
             fixedBar = 300 * percent;
         }

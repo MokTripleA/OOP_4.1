@@ -56,13 +56,13 @@ public class Life extends Items {
             }
             if (window.mousePressed) {
                 if (rarity <= 50) {
-                    hero.health += 25;
+                    hero.health += 25 * 0.2;
                 } else if (rarity > 50 && rarity <= 75) {
-                    hero.health += 50;
+                    hero.health += 50 * 0.2;
                 } else if (rarity > 75 && rarity <= 90) {
-                    hero.health += 100;
+                    hero.health += 100 * 0.2;
                 } else if (rarity > 90 && rarity <= 100) {
-                    hero.health += 250;
+                    hero.health += 250 * 0.2;
                 }
             }
         }

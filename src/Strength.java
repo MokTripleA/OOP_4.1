@@ -18,7 +18,7 @@ public class Strength extends Items {
         levelup = iLevelup;
     }
 
-    double rarity = Math.random() * 10;
+    double rarity = Math.random() * 100;
     PImage strength;
 
     /**
@@ -54,13 +54,13 @@ public class Strength extends Items {
             }
             if (window.mousePressed) {
                 if (rarity <= 50) {
-                    hero.attack += 5;
+                    hero.attack += 5 * 0.2;
                 } else if (rarity > 50 && rarity <= 75) {
-                    hero.attack += 10;
+                    hero.attack += 10 * 0.2;
                 } else if (rarity > 75 && rarity <= 90) {
-                    hero.attack += 20;
+                    hero.attack += 20 * 0.2;
                 } else if (rarity > 90 && rarity <= 100) {
-                    hero.attack += 50;
+                    hero.attack += 50 * 0.2;
                 }
             }
         }

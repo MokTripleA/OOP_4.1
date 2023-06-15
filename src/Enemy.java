@@ -38,24 +38,24 @@ public class Enemy extends Creature {
     /**
      * Methode, damit die Gegner den Helden "verfolgen" muessen
      *
-     * @param x x-Position die verfolgt werden soll
-     * @param y y-Position die verfolgt werden soll
+     * @param x    x-Position die verfolgt werden soll
+     * @param y    y-Position die verfolgt werden soll
      * @param hero Bezieht sich auf ein Objekt der Hero-Klasse
      */
     public void walk(float x, float y, Hero hero) {
         if (alive && hero.alive) {
             if (xPos + size / 2 != x + 18 && yPos + size / 2 != y + 18) {
                 if (xPos + size / 2 < x + 18) {
-                    xPos += speed;
+                    xPos += speed / 10;
                 }
                 if (xPos + size / 2 > x + 18) {
-                    xPos -= speed;
+                    xPos -= speed / 10;
                 }
                 if (yPos + size / 2 < y + 18) {
-                    yPos += speed;
+                    yPos += speed / 10;
                 }
                 if (yPos + size / 2 > y + 18) {
-                    yPos -= speed;
+                    yPos -= speed / 10;
                 }
             } else if (xPos + size / 2 == x + 18 && yPos + size / 2 == y + 18) {
             }

@@ -5,16 +5,16 @@ import processing.core.PApplet;
  */
 public class Fenster extends PApplet {
 
-    int enemies = 5;
-    int enemyHealth = 50;
+    final int enemies = 5;
+    int enemyHealth = 100;
     int enemyAttack = 15;
-    float enemySpeed = 1;
+    float enemySpeed = 10;
     boolean anyEnemyAlive = true;
     boolean runOnce = false;
 
-    Hero held = new Hero(this, 750, 320, 100, 1, 36, true, 300, false, false, 0, 36);
+    Hero held = new Hero(this, 750, 320, 100, 30, 36, true, 25, false, false, 0, 36);
     Minion[] gegner = new Minion[enemies];
-    Boss dickerGegner = new Boss(this, 200, 320, 1000, 0.5f, 64, false, 80, false, false, 0, 0);
+    Boss dickerGegner = new Boss(this, 200, 320, 1000, 5, 64, false, 80, false, false, 0, 0);
     Level level = new Level(this, 860, 720);
     Start start = new Start(this, true, false, false, false);
     Levelup life = new Life(this, new upgradeHealth(this));

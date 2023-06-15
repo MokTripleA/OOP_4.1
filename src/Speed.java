@@ -6,8 +6,9 @@ import processing.core.PImage;
  */
 public class Speed extends Items {
 
-    double rarity = Math.random() * 10;
+    double rarity = Math.random() * 100;
     PImage speed;
+
     /**
      * Konstruktor fuer die Speed-Klasse
      *
@@ -53,17 +54,17 @@ public class Speed extends Items {
             }
             if (window.mousePressed) {
                 if (rarity <= 50) {
-                    hero.speed += 0.1;
-                    enemy.speed -= 0.1;
+                    hero.speed += 2;
+                    enemy.speed -= 2;
                 } else if (rarity > 50 && rarity <= 75) {
-                    hero.speed += 0.3;
-                    enemy.speed -= 0.3;
+                    hero.speed += 4;
+                    enemy.speed -= 4;
                 } else if (rarity > 75 && rarity <= 90) {
-                    hero.speed += 0.7;
-                    enemy.speed -= 0.7;
+                    hero.speed += 7;
+                    enemy.speed -= 7;
                 } else if (rarity > 90 && rarity <= 100) {
-                    hero.speed += 1;
-                    enemy.speed -= 1;
+                    hero.speed += 10;
+                    enemy.speed -= 10;
                 }
             }
         }
