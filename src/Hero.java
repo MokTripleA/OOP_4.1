@@ -182,7 +182,6 @@ public final class Hero extends Creature {
      */
     public void healthbar(Start start, Enemy minion, Enemy boss) {
         if (minion.attacking || boss.attacking || window.mousePressed && start.nextWave) {
-            System.out.println("Updated :" + percent);
             percent = health / fixedHealth;
             fixedBar = 300 * percent;
         }

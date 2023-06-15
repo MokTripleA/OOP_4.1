@@ -17,9 +17,9 @@ public final class Boss extends Enemy {
     public void ultimate(Hero hero, Enemy enemy) {
         if (window.frameCount % 250 == 0 && hero.wave == 5) {
             enemy.alive = true;
-            enemy.speed = 1;
-            enemy.health = 200;
-            enemy.attack = 25;
+            enemy.speed = 10;
+            enemy.health = 250;
+            enemy.attack = 20;
         }
     }
 
@@ -30,8 +30,8 @@ public final class Boss extends Enemy {
      */
     public void resurrection(Hero hero) {
         if (!alive && hero.wave == 5 && points < 3) {
-            xPos = 100;
-            yPos = 320;
+            xPos = window.random(200, 620);
+            yPos = window.random(200, 520);
             points += 1;
             size *= 1.3;
             health += 2000 * points;
