@@ -36,7 +36,6 @@ public final class Hero extends Creature {
             window.text("Health: " + health, 880, 30); //Show Stat-Health
             window.text("Attack: " + attack, 880, 60); //Show Stat-Attack
             window.text("Speed: " + Math.round((double) speed * 100) / 100, 880, 90); //Show Stat-Speed
-            System.out.println(speed);
         }
     }
 
@@ -248,7 +247,7 @@ public final class Hero extends Creature {
                     enemy.xPos + size >= xPos + size / 2 - diameter / 2 && enemy.yPos >= yPos + size / 2 - diameter / 2 && enemy.yPos <= yPos + size / 2 + diameter / 2 || //Left ENEMY
                     enemy.yPos + size >= yPos + size / 2 - diameter / 2 && enemy.xPos >= xPos + size / 2 - diameter / 2 && enemy.xPos + size <= xPos + size / 2 + diameter / 2 || //Top ENEMY
                     enemy.yPos <= yPos + size / 2 + diameter / 2 && enemy.xPos >= xPos + size / 2 - diameter / 2 && enemy.xPos + size <= xPos + size / 2 + diameter / 2) { //Bottom ENEMY
-                enemy.health -= attack * 5;
+                enemy.health -= attack;
             }
         }
     }

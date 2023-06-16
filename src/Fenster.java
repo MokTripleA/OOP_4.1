@@ -14,7 +14,7 @@ public class Fenster extends PApplet {
 
     Hero held = new Hero(this, 750, 320, 100, 30, 36, true, 25, false, false, 0, 36);
     Minion[] gegner = new Minion[enemies];
-    Boss dickerGegner = new Boss(this, 200, 320, 1000, 5, 64, false, 80, false, false, 0, 0);
+    Boss dickerGegner = new Boss(this, 200, 320, 1000, 5, 50, false, 80, false, false, 0, 0);
     Level level = new Level(this, 860, 720);
     Start start = new Start(this, true, false, false, false);
     Levelup life = new Life(this, new upgradeHealth(this));
@@ -124,5 +124,4 @@ public class Fenster extends PApplet {
             }
         }
     }
-//Draw ends here
 }
